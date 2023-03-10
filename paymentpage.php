@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Payment Page</title>
-	<link rel="stylesheet" type="text/css" href="style3.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<header>
