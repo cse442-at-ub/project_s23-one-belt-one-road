@@ -5,6 +5,7 @@
 	<title>Product Detail</title>
 	<link rel="stylesheet" href="style.css">
 	<script src="script.js"></script>
+	<?php require('header.php'); ?>
 </head>
 <body>
 	<header>
