@@ -3,18 +3,18 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// Get the form input values
-	$username = $_POST["username"];
-	$email = $_POST["email"];
-	$password = $_POST["password"];
-	$password2 = $_POST["password2"];
-
+    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	$password2 = filter_input(INPUT_POST, 'password2', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 	// Validate the input
 	$errors = [];
-
 	if (empty($username)) {
 		$errors[] = "Username is required.";
 	}
-
+    elseif (!preg_match('/^[a-zA-Z0-9]+$/', $username)) {
+		$errors[] = "Username must contain only alphanumeric characters";
+	}
 	if (empty($email)) {
 	
 		$errors[] = "Email is required.";
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// If there are no errors, proceed with registration
 	if (empty($errors)) {
-
+		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 		// TODO: Insert the user data into your database
 		// For example, you could use PDO or mysqli to perform the database query
 		// Here's some sample code using PDO:
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<title>Registration Page</title>
 </head>
 <body>
-	<h1>Register</h1>
+	<h1>Register for Ubay</h1>
 
 	<?php if (!empty($errors)): ?>
 		<div style="color: red;">
@@ -83,3 +83,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</form>
 </body>
 </html>
+
