@@ -1,15 +1,13 @@
 <?php
-// Start the session
-// session_start();
-
 // Check if the form has been submitted
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// Retrieve the username and password from the form data
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-	// TODO: Authenticate the user (e.g., by checking if the username and password match a user in a database)
+	$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	// TODO: Authenticate the user (checking if the username and password match a user in a database)
 	// Check if the user is authenticated
+	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 	if ($username == 'myusername' && $password == 'mypassword') {
 		// Set a session variable to indicate that the user is logged in
 		$_SESSION['logged_in'] = true;
