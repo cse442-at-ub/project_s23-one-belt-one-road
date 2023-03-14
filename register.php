@@ -81,5 +81,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		<input type="submit" value="Sign Up">
 	</form>
+	<p>Already have an account? <a href="login.php">Click here</a> to sign in</p>
 </body>
 </html>
