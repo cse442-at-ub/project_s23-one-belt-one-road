@@ -46,5 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		<input type="submit" value="Log In">
 	</form>
+	<p>New User?<a href="register.php"> Click here</a> to register</p>
 </body>
 </html>
