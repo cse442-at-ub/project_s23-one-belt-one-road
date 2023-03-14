@@ -15,27 +15,30 @@ header {
 }
 
 main {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	padding: 50px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    padding: 50px;
 }
 
 #left {
-	flex: 1;
-	margin-right: 20px;
+	flex: 10;
+    text-align: left;
+}
+
+#center {
+	flex: 10;
+    text-align: center;
 }
 
 #right {
-	flex: 1;
-	text-align: right;
+	flex: 10;
+    text-align: right;
 }
 
 h2 {
 	color: #1b3f87;
 	font-size: 24px;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 p {
@@ -43,20 +46,20 @@ p {
 }
 
 label {
-	color: #00008B;
+	color: #006ED3;
 	display: inline-block;
 	width: 120px;
-	margin-bottom: 5px;
+	margin-bottom: 0px;
 }
 
 input[type="text"] {
 	border: 1px solid #cccccc;
 	padding: 5px;
-	width: 100%;
+	width: 50%;
 }
 
 #confirm {
-	background-color: #1b3f87;
+	background-color: #006ED3;
 	color: #ffffff;
 	border: none;
 	padding: 10px 20px;
@@ -70,4 +73,63 @@ h3 {
 	color: red;
 	font-size: 24px;
 	margin-bottom: 10px;
+}
+
+a {
+    font-size: 20px;
+    font-weight: 550;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+input {
+    background-color: #D9D9D9;
+    border: none;
+    font-family: "Inter";
+    font-weight: 500;
+    height: 30px;
+    margin: 5px;
+    padding-inline: 10px;
+}
+
+.text-button {
+    color: #006ED3;
+    font-family: "Inter";
+    font-weight: 550;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.text-button:hover {
+    text-decoration: underline;
+}
+
+.image-button:hover {
+    border: 1.5px solid #006ED3;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.logo-button {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.logo-button:hover {
+    border: 1.5px solid #006ED3;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.blue-button {
+    background-color: #006ED3;
+    border: none;
+    color: white;
+    font-family: "Inter";
+    font-size: 18px;
+    font-weight: 550;
+    padding-block: 5px;
+    padding-inline: 15px;
+    margin: 5px;
 }
