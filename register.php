@@ -36,14 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// If there are no errors, proceed with registration
 	if (empty($errors)) {
 		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-		// TODO: Insert the user data into your database
-		// For example, you could use PDO or mysqli to perform the database query
-		// Here's some sample code using PDO:
-		// $db = new PDO("mysql:host=localhost;dbname=mydatabase", "myusername", "mypassword");
-		// $stmt = $db->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-		// $stmt->execute([$username, $email, password_hash($password, PASSWORD_DEFAULT)]);
-
-		// Redirect the user to the landing page
+		$serverName = "oceanus.cse.buffalo.edu:3306";
+		$dbUser = "cqstuhle";
+		$dbPass = "50440370";
+		$dbName = "cse442_2023_spring_team_j_db";
+		$conn = mysqli_connect($serverName , $dbUser, $dbPass, $dbName);
+		if (!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+		$conn->close();
 		header("Location: landing.php");
 		exit();
 	}
