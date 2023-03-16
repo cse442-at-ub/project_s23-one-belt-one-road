@@ -11,38 +11,36 @@
 		<?php require 'header.php'; ?>
 	</header>
 	<main>
-		<section id="trending-products" style="text-align: center;">
+		<section id="trending-products" style="text-align: center; ">
 			<h1 style="font-style: italic; margin-bottom: 50px;">Trending</h1>
 			<div style="text-align: center;">
 				<?php
 					// Connect to database and retrieve featured products
 					// Loop through products and generate HTML code
 				?>
-				<ul style="list-style: none; display: flex; gap: 50px; justify-content: center;">
-					<li style="display: flex; flex-direction: column; align-items: center;">
-						<a href="#"><img src="#" alt="item" class="image-button" width="300"></br>Item Name</a>
-						<h2>$ XX</h2>
+				<ul class="landing-item-list">
+					<li class="item-block-tall">
+						<a href="#"><img src="/images/item-spam.png" alt="item" class="item-image-button"></br>SPAM 12 OZ</a>
+						<span class="landing-item-title">$ 4.42<span>
 					</li>
-					<li style="display: flex; flex-direction: column; align-items: center;">
-						<a href="#"><img src="#" alt="item" class="image-button" width="300"></br>Item Name</a>
-						<h2>$ XX</h2>
+					<li class="item-block-tall">
+						<a href="#"><img src="/images/item-mug.png" alt="item" class="item-image-button"></br>Handmade Mug</a>
+						<span class="landing-item-title">$ 22.4<span>
 					</li>
-					<li style="display: flex; flex-direction: column; align-items: center;">
-						<a href="#"><img src="#" alt="item" class="image-button" width="300"></br>Item Name</a>
-						<h2>$ XX</h2>
+					<li class="item-block-tall">
+						<a href="#"><img src="/images/item-bag.jpg" alt="item" class="item-image-button"></br>Amuseable Sun</a>
+						<span class="landing-item-title">$ 44.2<span>
 					</li>
-					<li style="display: flex; flex-direction: column; align-items: center;">
-						<a href="#"><img src="#" alt="item" class="image-button" width="300"></br>Item Name</a>
-						<h2>$ XX</h2>
+					<li class="item-block-tall">
+						<a href="#"><img src="/images/item-fries.jpg" alt="item" class="item-image-button"></br>Just Potatoes</a>
+						<span class="landing-item-title">$ 2.24<span>
 					</li>
 				</ul>
 			</div>
-			<p>Get access to exclusive products from students.</p>
+			<p style="margin-top: 40px;">Get access to exclusive products from students.</p>
 			<a href="#" class="text-button" style="text-align: right;">See All</a>
 		</section>
 	</main>
-	<footer style="text-align: center;">
-		<p>&copy; 2023 Ubay Website.</p>
-	</footer>
+	<?php require 'footer.php'; ?>
 </body>
 </html>
