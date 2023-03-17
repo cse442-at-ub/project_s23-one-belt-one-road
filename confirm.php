@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Payment Page</title>
+	<title>Confirmation Page</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
