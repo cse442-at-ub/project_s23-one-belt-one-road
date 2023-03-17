@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<?php endif; ?>
 				</p>
 
-				<button type="submit" id="confirm">Confirm Order</button>
+				<button type="submit" id="confirm" href="confirm.php">Confirm Order</button>
 			</section>
 		</form>
 
