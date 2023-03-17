@@ -3,22 +3,20 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// Get the form input values
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+	$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 	$password2 = filter_input(INPUT_POST, 'password2', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 	// Validate the input
 	$errors = [];
 	if (empty($username)) {
 		$errors[] = "Username is required.";
-	}
-    elseif (!preg_match('/^[a-zA-Z0-9]+$/', $username)) {
+	} elseif (!preg_match('/^[a-zA-Z0-9]+$/', $username)) {
 		$errors[] = "Username must contain only alphanumeric characters";
 	}
 	if (empty($email)) {
-	
+
 		$errors[] = "Email is required.";
-	
 	} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		$errors[] = "Invalid email format.";
 	}
@@ -40,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$dbUser = "cqstuhle";
 		$dbPass = "50440370";
 		$dbName = "cse442_2023_spring_team_j_db";
-		$conn = mysqli_connect($serverName , $dbUser, $dbPass, $dbName);
+		$conn = mysqli_connect($serverName, $dbUser, $dbPass, $dbName);
 		if (!$conn) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
@@ -53,35 +51,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Registration Page</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-	<h1>Register for Ubay</h1>
+	<div class="container">
 
-	<?php if (!empty($errors)): ?>
-		<div style="color: red;">
-			<?php foreach ($errors as $error): ?>
-				<p><?php echo $error ?></p>
-			<?php endforeach; ?>
-		</div>
-	<?php endif; ?>
+		<h1>Register for Ubay</h1>
+		<?php if (!empty($errors)) : ?>
+			<div style="color: red;">
+				<?php foreach ($errors as $error) : ?>
+					<p><?php echo $error ?></p>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
 
-	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-		<label for="username">Username:</label>
-		<input type="text" name="username" id="username" value=" <?=(isset($username))?$username:""?>" required><br><br>
+		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+			<label for="username">Username:</label>
+			<input type="text" name="username" id="username" value=" <?= (isset($username)) ? $username : "" ?>" required><br><br>
 
-		<label for="email">Email:</label>
-		<input type="email" name="email" id="email" value=" <?=(isset($email))?$email:""?>" required><br><br>
+			<label for="email">Email:</label>
+			<input type="email" name="email" id="email" value=" <?= (isset($email)) ? $email : "" ?>" required><br><br>
 
-		<label for="password">Password:</label>
-		<input type="password" name="password" id="password" required><br><br>
+			<label for="password">Password:</label>
+			<input type="password" name="password" id="password" required><br><br>
 
-		<label for="password2">Verify Password:</label>
-		<input type="password" name="password2" id="password2" required><br><br>
+			<label for="password2">Verify Password:</label>
+			<input type="password" name="password2" id="password2" required><br><br>
 
-		<input type="submit" value="Sign Up">
-	</form>
-	<p>Already have an account? <a href="login.php">Click here</a> to sign in</p>
+			<input type="submit" value="Sign Up">
+		</form>
+		<p>Already have an account? <a href="login.php">Click here</a> to sign in</p>
+	</div>
 </body>
+
 </html>
