@@ -57,6 +57,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Check if expiration date is in format "yyyy/mm"
 	elseif (!preg_match("/^(19|20)\d{2}\/(0[1-9]|1[0-2])$/", $expiration)) {$expiration_error[] = "Expiration Date must be in format 'YYYY/MM' and must be valid.";}
 
+	if (empty($address_error) && empty($name_error) && empty($phone_error) &&
+	empty($city_error) && empty($state_error) && empty($zipcode_error) &&
+	empty($cardnumber_error) && empty($cardname_error) && empty($expiration_error)) { 
+		header("Location: confirm.php"); 
+		exit; }
+					
 }
 ?>
 
@@ -178,8 +184,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						</div>
 					<?php endif; ?>
 				</p>
-
-				<button type="submit" id="confirm" href="confirm.php">Confirm Order</button>
+				
+				<button type="submit" id="confirm">Confirm Order</button>
+				
 			</section>
 		</form>
 
