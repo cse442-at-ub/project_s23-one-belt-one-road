@@ -19,7 +19,7 @@
 				
 					<div id="cartItem" class="item-block-long">
 					  	<div class="item-block-long-info">
-					    	<a href="#" class="centered-link"><img src="/images/item-spam.png" alt="item" class="item-block-long-image">SPAM 12Oz</a>
+					    	<a href="product_detail_page.php" class="centered-link"><img src="/images/item-spam.png" alt="item" class="item-block-long-image">SPAM 12Oz</a>
 					    	<span class="item-price" type="number">$ 4.42</span>
 					  	</div>
 					  	<input type="number" class="item-amount" value="1">
@@ -29,7 +29,7 @@
 
 					<div id="cartItem" class="item-block-long">
 					  	<div class="item-block-long-info">
-					    	<a href="#" class="centered-link"><img src="/images/item-mug.png" alt="item" class="item-block-long-image">Handmade Mug</a>
+					    	<a href="product_detail_page.php" class="centered-link"><img src="/images/item-mug.png" alt="item" class="item-block-long-image">Handmade Mug</a>
 					    	<span class="item-price" type="number">$ 22.4</span>
 					  	</div>
 					  	<input type="number" class="item-amount" value="1">
@@ -39,7 +39,7 @@
 
 					<div id="cartItem" class="item-block-long">
 						<div class="item-block-long-info">
-							<a href="#" class="centered-link"><img src="/images/item-bag.jpg" alt="item" class="item-block-long-image">Amuseable Sun</a>
+							<a href="product_detail_page.php" class="centered-link"><img src="/images/item-bag.jpg" alt="item" class="item-block-long-image">Amuseable Sun</a>
 					    	<span class="item-price" type="number">$ 44.2</span>
 					  	</div>
 					  	<input type="number" class="item-amount" value="1">
@@ -49,7 +49,7 @@
 
 					<div id="cartItem" class="item-block-long">
 						<div class="item-block-long-info">
-							<a href="#" class="centered-link"><img src="/images/item-fries.jpg" alt="item" class="item-block-long-image">Just Potatoes</a>
+							<a href="product_detail_page.php" class="centered-link"><img src="/images/item-fries.jpg" alt="item" class="item-block-long-image">Just Potatoes</a>
 							<span class="item-price" type="number">$ 2.24</span>
 						</div>
 						<input type="number" class="item-amount" value="1">
