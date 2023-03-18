@@ -7,6 +7,11 @@ function calculateTotal() {
 	    var cartItem = cartItems[i];
 	    // Get the item amount and price
 	    var itemAmount = cartItem.querySelector("input").value;
+	    if (isNaN(itemAmount) || (itemAmount % 1 !== 0) || (itemAmount <= 0)) {
+	    	alert("Error: Please enter a valid number.");
+	    	cartItem.querySelector("input").value = 1;
+      		itemAmount = 1;
+	    }
 	    var itemPrice = cartItem.querySelector(".item-price").textContent.replace("$ ", "");
 	    var itemSubtotal = itemAmount * itemPrice;
 	    cartItem.querySelector(".item-subtotal").textContent = "Subtotal $ " + itemSubtotal.toFixed(2);
