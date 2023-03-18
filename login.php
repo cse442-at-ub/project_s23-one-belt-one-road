@@ -8,28 +8,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (empty($errors)) {
 		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 		$serverName = "oceanus.cse.buffalo.edu:3306";
-		$dbUser = "cqstuhle";
-		$dbPass = "50440370";
+		$dbUser = "UBITNAME";
+		$dbPass = "PERSON NUM";
 		$dbName = "cse442_2023_spring_team_j_db";
 		$conn = mysqli_connect($serverName , $dbUser, $dbPass, $dbName);
 		if (!$conn) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
-		$conn->close();
-		header("Location: landing.php");
-		exit();
-	}
-	if ($username == 'myusername' && $password == 'mypassword') {
-		// Set a session variable to indicate that the user is logged in
-		$_SESSION['logged_in'] = true;
+		$query = "SELECT password FROM user WHERE username = '$username'";
+		$result = mysqli_query($conn, $query);
+		if (mysqli_num_rows($result) == 1) {
+			$row = mysqli_fetch_assoc($result);
+			$hashed_password = $row['password'];
 
-		// Redirect to the home page (or some other protected page)
-		header('Location: landing.php');
-		exit();
-	} else {
-		// Display an error message
-		$error_msg = 'Invalid username or password. Please try again.';
-	}
+			if (password_verify($password, $hashed_password)) {
+				$_SESSION['logged_in'] = true;
+				echo '<p style="color: green;">' . "Successful login!" . '</p>';
+				// header('Location: landing.php');
+			  }
+			else{
+			$error_msg = 'Invalid username or password. Please try again';
+				}
+		}
+		else {
+		$error_msg = 'Invalid username or password. Please try again';
+		}
+		$conn->close();
+}
 }
 ?>
 
@@ -37,14 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
 	<title>Log In - Ubay</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="styleLogReg.css">
 </head>
 <body>
 <div class="container">
 	<h1>Log In</h1>
 
 	<?php
-	// Display an error message (if any)
 	if (isset($error_msg)) {
 		echo '<p style="color: red;">' . $error_msg . '</p>';
 	}
