@@ -11,7 +11,9 @@
             </div>
 
             <div style="float: left;">
-                <img src="/images/logo.png" alt="Logo" class="logo-button" width="120">
+                <a href="index.php">
+                    <img src="/images/logo.png" alt="Logo" class="logo-button" width="120">
+                </a>
             </div>
 
             <div style="clear: both;"></div>
