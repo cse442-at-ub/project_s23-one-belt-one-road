@@ -9,10 +9,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$password2 = filter_input(INPUT_POST, 'password2', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 	// Validate the input
 	$errors = [];
+	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+	$serverName = "oceanus.cse.buffalo.edu:3306";
+	$dbUser = "UBIT NAME";
+	$dbPass = "PERSON NUM";
+	$dbName = "cse442_2023_spring_team_j_db";
+	$conn = mysqli_connect($serverName, $dbUser, $dbPass, $dbName);
 	if (empty($username)) {
 		$errors[] = "Username is required.";
 	} elseif (!preg_match('/^[a-zA-Z0-9]+$/', $username)) {
 		$errors[] = "Username must contain only alphanumeric characters";
+	}
+	$query = "SELECT username FROM user";
+	$result = mysqli_query($conn, $query);
+	while ($row = mysqli_fetch_assoc($result)) {
+      if($row['username'] == $username){
+		$errors[] = "Username already in use";
+		break;
+	  }
 	}
 	if (empty($email)) {
 
@@ -31,20 +45,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$errors[] = "Passwords do not match.";
 	}
 
-	// If there are no errors, proceed with registration
 	if (empty($errors)) {
-		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-		$serverName = "oceanus.cse.buffalo.edu:3306";
-		$dbUser = "cqstuhle";
-		$dbPass = "50440370";
-		$dbName = "cse442_2023_spring_team_j_db";
-		$conn = mysqli_connect($serverName, $dbUser, $dbPass, $dbName);
 		if (!$conn) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
+		$sql = "INSERT INTO user (username, email, password)
+		VALUES ('$username', '$email', '$hashed_password')";
+		
+		if ($conn->query($sql) === TRUE) {
+		  echo "New account created successfully";
+		  header("Location: login.php");
+
+		} else {
+		//   echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+		
 		$conn->close();
-		header("Location: landing.php");
-		exit();
 	}
 }
 ?>
@@ -54,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 	<title>Registration Page</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="styleLogReg.css">
 </head>
 
 <body>
