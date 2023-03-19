@@ -1,0 +1,10 @@
+  h1 {
+    color: rgba(0, 110, 211, 1);
+  }
+  body {
+    text-align: center;
+}
+form {
+    display: inline-block;
+    text-align: left;
+}
