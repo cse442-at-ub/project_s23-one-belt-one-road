@@ -1,4 +1,8 @@
 <?php
+
+//To import a function from this file, you must include the line: "require_once 'apiFunctions.php'"; in your PHP code.
+//Then you may use any function by calling it normally (i.e. establish_connection() will work properly)
+
 //NOTE: establish_connection and close_connection should only be used within other API functions. Do not directly call these functions to accsess the database
 //This function will take no parameters
 function establish_connection() {
