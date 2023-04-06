@@ -193,3 +193,21 @@ function addToShoppingCart($userID, $productID, $amount){
         return 1;
     }
 }
+
+//This function takes an string parameter, which is the search phrase input from the user
+// return format (if succsuessful) will be N lists , with each list of the structure ['id' , 'product_name', 'owner_id', 'unit_price', 'inventory', 'description' , 'image' ]
+// Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
+function searchItems($search){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL searchProduct(?)");
+    $stmt->bind_param("i", $search);
+    // Execute the statement
+    $stmt->execute();
+    $result = $stmt->get_result();
+    close_connection($conn);
+    $stmt->close();
+    if (!$result) {
+        return -1;
+    }
+    return $result;
+}
