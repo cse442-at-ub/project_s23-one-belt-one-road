@@ -2,6 +2,7 @@
 
 //To import a function from this file, you must include the line: "require_once 'apiFunctions.php'"; in your PHP code.
 //Then you may use any function by calling it normally (i.e. establish_connection() will work properly)
+//IMPORTANT: All parameters need to be sanatisied (to prevent injection attacks) prior to calling function.
 
 //NOTE: establish_connection and close_connection should only be used within other API functions. Do not directly call these functions to accsess the database
 //This function will take no parameters
@@ -30,8 +31,7 @@ function close_connection($conn) {
     }
 }
 
-//This function takes the string username and string password input from the user after submitting login form
-//IMPORTANT: both parameters need to be sanatisied (to prevent injection attacks) prior to calling function. 
+//This function takes the string username and string password input from the user after submitting login form 
 // Password must not be hashed when function is called 
 // If login is succsuessfull, user will be relocated to index.php. Otherwise a string error message will be returned 
 function login($username , $password) {
@@ -66,7 +66,6 @@ function login($username , $password) {
 }
 
 //This function takes the string username, email, password, and password2 input from the user after submitting register form
-//IMPORTANT: ALL parameters need to be sanatisied (to prevent injection attacks) prior to calling function. 
 // Password must not be hashed when function is called 
 // If registartation is succsuessfull, user will be relocated to login.php. 
 // Otherwise an array containing error messages will be returned (i.e. "Username is already in use"). Multiple error messages may be in array
