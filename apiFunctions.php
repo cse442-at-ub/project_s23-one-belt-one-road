@@ -107,9 +107,43 @@ function register($username, $email, $password , $password2){
             close_connection($conn);
 		  header("Location: login.php");
 		//   echo "New account created successfully";
-
 		} 
 		close_connection($conn);
 		return $errors;
 	}
+}
+//This function takes no parameters and will return all items in the the database
+// return format (if succsuessful) will be a list of lists, with each list of the structure ['id' , 'product_name', 'owner_id', 'unit_price', 'inventory', 'description' , 'image' ]
+// Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
+function getAllItems(){
+    $conn = establish_connection();
+    // Call the stored procedure
+    $query = "CALL getAllProduct()";
+    $result = mysqli_query($conn, $query);
+    close_connection($conn);
+    if (!$result) {
+        return -1;
+    }
+    return $result;
+
+}
+
+//This function takes an integer parameter for the number of items that will be returned.
+// return format (if succsuessful) will be $productCount lists , with each list of the structure ['id' , 'product_name', 'owner_id', 'unit_price', 'inventory', 'description' , 'image' ]
+// Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
+function getNItems($productCount){
+    $conn = establish_connection();
+    // Call the stored procedure
+    $stmt = $conn->prepare("CALL getLandingPageProduct(?)");
+    $stmt->bind_param("i", $productCount);
+    // Execute the statement
+    $stmt->execute();
+    // Get the result 
+    $result = $stmt->get_result();
+    close_connection($conn);
+    $stmt->close();
+    if (!$result) {
+        return -1;
+    }
+    return $result;
 }
