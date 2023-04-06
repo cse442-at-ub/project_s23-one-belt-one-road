@@ -169,8 +169,8 @@ function removeFromShoppingCart($userID, $productID, $amount){
     }
 }
 
-//This function takes in parameters userID, productID, and ammount (the ammount of productID that should be removed)
-// -1 return value indicates an error executing the procedure. 1 indicates item was removed from cart
+//This function takes in parameters userID, productID, and ammount (the ammount of productID that should be added to cart)
+// -1 return value indicates an error executing the procedure. 1 indicates ammount items were added to cart
 //TODO: Edge cases (amount greater than available for sale)
 function addToShoppingCart($userID, $productID, $amount){
     $conn = establish_connection();
