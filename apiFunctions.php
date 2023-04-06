@@ -2,8 +2,8 @@
 //NOTE: establish_connection and close_connection should only be used within other API functions. Do not directly call these functions to accsess the database
 //This function will take no parameters
 function establish_connection() {
-    $username = 'cqstuhle';
-    $password = '50440370';
+    $username = 'fenghaih';
+    $password = '50315030';
     $serverName = "oceanus.cse.buffalo.edu:3306";
     $dbName = "cse442_2023_spring_team_j_db";
     $conn = mysqli_connect($serverName, $username, $password, $dbName);
