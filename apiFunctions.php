@@ -195,7 +195,7 @@ function addToShoppingCart($userID, $productID, $amount){
 
 //This function takes an string parameter, which is the search phrase input from the user
 // return format (if succsuessful) will be N lists , with each list of the structure ['id' , 'product_name', 'owner_id', 'unit_price', 'inventory', 'description' , 'image' ]
-// Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
+// Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure. Or flag value of 0 will be returned -> indicating no results were found in database
 function searchItems($search){
     $conn = establish_connection();
     $stmt = $conn->prepare("CALL searchProduct(?)");
@@ -207,6 +207,9 @@ function searchItems($search){
     $stmt->close();
     if (!$result) {
         return -1;
+    }
+    elseif(mysqli_num_rows($result) == 0){
+        return 0;
     }
     return $result;
 }
