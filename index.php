@@ -20,19 +20,19 @@
 				?>
 				<ul class="landing-item-list">
 					<li class="item-block-tall">
-						<a href="#"><img src="/images/item-spam.png" alt="item" class="item-image-button"></br>SPAM 12 OZ</a>
+						<a href="product_detail.php"><img src="/images/item-spam.png" alt="item" class="item-image-button"></br>SPAM 12 OZ</a>
 						<span class="landing-item-title">$ 4.42<span>
 					</li>
 					<li class="item-block-tall">
-						<a href="#"><img src="/images/item-mug.png" alt="item" class="item-image-button"></br>Handmade Mug</a>
+						<a href="product_detail.php"><img src="/images/item-mug.png" alt="item" class="item-image-button"></br>Handmade Mug</a>
 						<span class="landing-item-title">$ 22.4<span>
 					</li>
 					<li class="item-block-tall">
-						<a href="#"><img src="/images/item-bag.jpg" alt="item" class="item-image-button"></br>Amuseable Sun</a>
+						<a href="product_detail.php"><img src="/images/item-bag.jpg" alt="item" class="item-image-button"></br>Amuseable Sun</a>
 						<span class="landing-item-title">$ 44.2<span>
 					</li>
 					<li class="item-block-tall">
-						<a href="#"><img src="/images/item-fries.jpg" alt="item" class="item-image-button"></br>Just Potatoes</a>
+						<a href="product_detail.php"><img src="/images/item-fries.jpg" alt="item" class="item-image-button"></br>Just Potatoes</a>
 						<span class="landing-item-title">$ 2.24<span>
 					</li>
 				</ul>
