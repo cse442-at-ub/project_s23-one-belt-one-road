@@ -1,3 +1,26 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if(isset($_GET['keywords'])){
+        $keywords = filter_var($_GET['keywords'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        if(!empty($keywords)){
+            if(preg_match("/('|\"|\\\\)/", $keywords)){
+                echo "<p style='color:red;'>Invalid Input.</p>";
+            }else{
+                // go to item-listing page and fetch all the items related to keyword
+                header("Location: itemlisting.php?keywords=$keywords");
+                exit();
+            }
+        }else{
+            // if input is empty, go to item-listing page and fetch all the items on sale
+            header("Location: itemlisting.php");
+            exit();
+        }
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
     <body>
@@ -20,10 +43,12 @@
 
             <div style="text-align: center; margin-top: -25px;">
                 <form action="search.php" method="get" class="search-bar">
-                    <input type="text" name="keywords" style="width: 500px;">
-                    <button type="submit" class="blue-button" style="height: 30px;">SEARCH</button>
+                    <input type="text" name="keywords" style="width: 500px;" value="<?php echo isset($_GET['keywords']) ? htmlspecialchars(trim($_GET['keywords'])) : ''; ?>">
+                        <button type="submit" class="blue-button" style="height: 30px;">SEARCH</button>
                 </form>
             </div>
+
+            
 
         </div>
     </body>
