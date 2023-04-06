@@ -43,12 +43,17 @@
         if($items == -1){
             echo 'Error in query';
         }
-		else{
+		elseif ($items == 0){
+            echo "\nNo results found";
+        }
+        else{
             echo 'Zero Errors in query';
             foreach ($items as $item) {
                 echo '<div>' . $item['product_name'] . ': ' . $item['unit_price'] . '</div>';
             }
-        }
+
+        } 
+        
 	?>
 </body>
 </html>
