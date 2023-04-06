@@ -36,7 +36,19 @@
         else{
             echo "Updated Cart!";
         }
-        
+        //NOTE: Bug in DB procedure, does not update existing item, instead adds it again
+
+        echo 'Search product (mug)';
+        $items = searchItems('mug');
+        if($items == -1){
+            echo 'Error in query';
+        }
+		else{
+            echo 'Zero Errors in query';
+            foreach ($items as $item) {
+                echo '<div>' . $item['product_name'] . ': ' . $item['unit_price'] . '</div>';
+            }
+        }
 	?>
 </body>
 </html>
