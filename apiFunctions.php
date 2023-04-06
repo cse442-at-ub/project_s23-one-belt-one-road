@@ -147,3 +147,45 @@ function getNItems($productCount){
     }
     return $result;
 }
+
+//This function takes in parameters userID, productID, and ammount (the ammount of productID that should be removed)
+// -1 return value indicates an error executing the procedure. 1 indicates item was removed from cart
+//TODO: Edge cases (negative items), update to use amount (database procedure currently does not except an ammount parameter)
+function removeFromShoppingCart($userID, $productID, $amount){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL removeFromShoppingCart(?, ?)");
+    $stmt->bind_param("ii", $userID, $productID);
+    // Execute the statement
+    $stmt->execute();
+    // Handle the result
+    if ($stmt->errno) {
+        $stmt->close();
+        close_connection($conn);
+        return -1;
+    } else {
+        $stmt->close();
+        close_connection($conn);
+        return 1;
+    }
+}
+
+//This function takes in parameters userID, productID, and ammount (the ammount of productID that should be removed)
+// -1 return value indicates an error executing the procedure. 1 indicates item was removed from cart
+//TODO: Edge cases (amount greater than available for sale)
+function addToShoppingCart($userID, $productID, $amount){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL addToShoppingCart(?, ?, ?)");
+    $stmt->bind_param("iii", $userID, $productID, $amount);
+    // Execute the statement
+    $stmt->execute();
+    // Handle the result
+    if ($stmt->errno) {
+        $stmt->close();
+        close_connection($conn);
+        return -1;
+    } else {
+        $stmt->close();
+        close_connection($conn);
+        return 1;
+    }
+}
