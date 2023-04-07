@@ -2,19 +2,17 @@
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if(isset($_GET['keywords'])){
         $keywords = filter_var($_GET['keywords'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $errors = [];
 
         if(!empty($keywords)){
             if(preg_match("/('|\"|\\\\)/", $keywords)){
-                echo "<p style='color:red;'>Invalid Input.</p>";
+                $errors[] = "Invalid Input.";
             }else{
-                // go to item-listing page and fetch all the items related to keyword
-                header("Location: itemlisting.php?keywords=$keywords");
-                exit();
+                //fetch all items related to keyword
+                
             }
         }else{
-            // if input is empty, go to item-listing page and fetch all the items on sale
-            header("Location: itemlisting.php");
-            exit();
+            // if input is empty, fetch all items on sale
         }
     }
 }
@@ -42,13 +40,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <div style="clear: both;"></div>
 
             <div style="text-align: center; margin-top: -25px;">
-                <form action="search.php" method="get" class="search-bar">
-                    <input type="text" name="keywords" style="width: 500px;" value="<?php echo isset($_GET['keywords']) ? htmlspecialchars(trim($_GET['keywords'])) : ''; ?>">
+                <form action="itemlisting.php" method="get" class="search-bar">
+                    <input type="text" name="keywords" style="width: 500px;">
                         <button type="submit" class="blue-button" style="height: 30px;">SEARCH</button>
                 </form>
             </div>
 
-            
+            <?php if (!empty($errors)): ?>
+                <div style="color: red; text-align: center;">
+                    <?php foreach ($errors as $error): ?>
+                        <p><?php echo $error ?></p>
+                    <?php endforeach; ?>
+                </div>
+			<?php endif; ?>
 
         </div>
     </body>
