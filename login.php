@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Check if the form has been submitted
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -23,8 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			if (password_verify($password, $hashed_password)) {
 				$_SESSION['logged_in'] = true;
+				$_SESSION['username'] = $username;
+				$email_query = mysqli_query($conn, "SELECT email FROM user WHERE username = '$username'");
+			    $email_row = mysqli_fetch_assoc($email_query);
+			    $_SESSION['email'] = $email_row['email'];
 				echo '<p style="color: green;">' . "Successful login!" . '</p>';
-				// header('Location: landing.php');
+				header('Location: account.php');
 			  }
 			else{
 			$error_msg = 'Invalid username or password. Please try again';

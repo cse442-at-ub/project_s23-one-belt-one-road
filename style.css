@@ -229,3 +229,72 @@ input[type="number"] {
 .cart-remove-button:hover {
     background-color: #006ED3;
 }
+
+/* Account Page */
+
+.flex-container {
+    display: flex; 
+    flex: 1;
+    padding-inline: 27%;
+}
+
+.account-blocks {
+/*    border: solid 6px #64A1D9;*/
+    margin-inline: 30px;
+    padding-inline: 70px;
+    padding-bottom: 30px;
+    /*
+    display: flex;
+    flex: 1;
+    gap: 200px; 
+    flex-direction: row; 
+    justify-content: center; 
+    padding: 0;
+    */
+}
+
+.account-info {
+    border-right: solid 4px #64A1D9;
+/*    background-color: #64A1D9;*/
+    color: #006ED3;
+    padding: 30px;
+    min-width: 225px;
+}
+
+.account-info-list {
+/*    list-style: none;*/
+/*    text-align: left;*/
+}
+
+.info-title {
+    font-size: 20px;
+    font-weight: 550;
+    margin: 0px;
+}
+
+.info-block {
+    margin-block: 10px;
+}
+
+.info-content {
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0px;
+}
+
+.mode-block {
+/*    margin-block: 50px;*/
+}
+
+.blue-button-large {
+    background-color: #006ED3;
+    border: none;
+    color: white;
+    font-family: "Inter";
+    font-size: 20px;
+    font-weight: 550;
+    padding-inline: 30px;
+    height: 100px;
+    width: 180px;
+    margin: 5px;
+}
