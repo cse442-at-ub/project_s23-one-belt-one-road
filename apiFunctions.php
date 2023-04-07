@@ -4,7 +4,7 @@
 //Then you may use any function by calling it normally (i.e. establish_connection() will work properly)
 //IMPORTANT: All parameters need to be sanatisied (to prevent injection attacks) prior to calling function.
 
-//NOTE: establish_connection and close_connection should only be used within other API functions. Do not directly call these functions to accsess the database
+//NOTE: establish_connection and close_connection should only be used if neccesarry. Otherwise, they will be called within other APIs
 //This function will take no parameters
 function establish_connection() {
     $username = 'fenghaih';
@@ -52,9 +52,12 @@ function login($username , $password) {
         //Built-in function used to verify plain text password with hashed password
 		if (password_verify($password, $hashed_password)) {
 			$_SESSION['logged_in'] = true;
-            //message will not be printed due to redirection to index.php
-			// echo '<p style="color: green;">' . "Successful login!" . '</p>';
-			header('Location: index.php');
+			$_SESSION['username'] = $username;
+			$email_query = mysqli_query($conn, "SELECT email FROM user WHERE username = '$username'");
+			$email_row = mysqli_fetch_assoc($email_query);
+			$_SESSION['email'] = $email_row['email'];
+			echo '<p style="color: green;">' . "Successful login!" . '</p>';
+			header('Location: account.php');
 		}
 		else {
 			 return $error_msg;
