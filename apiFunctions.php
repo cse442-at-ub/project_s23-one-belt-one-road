@@ -46,9 +46,6 @@ function login($username , $password) {
         //Get hashed password from database if it exists
 		$hashed_password = $row['password'];
 
-        //close connection prior to returning
-        close_connection($conn);
-
         //Built-in function used to verify plain text password with hashed password
 		if (password_verify($password, $hashed_password)) {
 			$_SESSION['logged_in'] = true;
@@ -57,13 +54,16 @@ function login($username , $password) {
 			$email_row = mysqli_fetch_assoc($email_query);
 			$_SESSION['email'] = $email_row['email'];
 			echo '<p style="color: green;">' . "Successful login!" . '</p>';
+            close_connection($conn);
 			header('Location: account.php');
 		}
 		else {
+            close_connection($conn);
 			 return $error_msg;
 				}
 		}
 		else {
+            close_connection($conn);
             return $error_msg;
 		}
 }
