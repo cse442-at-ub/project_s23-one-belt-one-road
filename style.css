@@ -64,9 +64,11 @@ button {
 }
 
 .logo-button {
-    margin-top: 10px;
+    color: #006ED3;
+    font-size: 55px;
     cursor: pointer;
     padding: 10px;
+    padding-top: 0px;
 }
 
 .logo-button:hover {

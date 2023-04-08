@@ -16,14 +16,14 @@
                             <img src="images/cart.png" alt="Shopping Cart" class="image-button" width="30">
                         </a>';
                 } else { // If user is not logged in
-                    echo '<a href="login.php" class="text-button" style="font-size: 18px; margin-top: -4px;">Log In</a>';
+                    echo '<a href="login.php" class="text-button" style="font-size: 18px;">Log In</a>';
                 }
             ?>
             </div>
 
-            <div style="float: left;">
-                <a href="index.php">
-                    <img src="/images/logo.png" alt="Logo" class="logo-button" width="120">
+            <div style="float: left; padding-top: 10px;">
+                <a href="index.php" class="logo-button">
+                    ubay
                 </a>
             </div>
 
