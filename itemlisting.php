@@ -12,7 +12,7 @@
 
 	<div class="item-container">
 		<div class="item">
-			<a href="product_detail_page.php">
+			<a href="product_detail.php">
 				<img src="/images/hat1.jpg" alt="Hat 1">
 			</a>
 			<h3>Hat 1</h3>
@@ -20,7 +20,7 @@
 		</div>
 
 		<div class="item">
-			<a href="product_detail_page.php">
+			<a href="product_detail.php">
 				<img src="/images/hat1.jpg" alt="Hat 2">
 			</a>
 			<h3>Hat 2</h3>
@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="item">
-			<a href="product_detail_page.php">
+			<a href="product_detail.php">
 				<img src="/images/hat1.jpg" alt="Hat 3">
 			</a>
 			<h3>Hat 3</h3>
