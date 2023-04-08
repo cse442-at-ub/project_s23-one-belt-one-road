@@ -35,7 +35,8 @@ button {
 .text-button {
     color: #006ED3;
     font-weight: 550;
-    margin-right: 15px;
+    margin-left: 5px;
+    margin-right: 20px;
     text-decoration: none;
 }
 
@@ -45,11 +46,11 @@ button {
 
 .image-button {
     padding: 1px;
+    margin-top: 6px;
 }
 
 .image-button:hover {
     border-radius: 10px;
-    margin: 0;
     outline: 3px solid #006ED3;
 }
 
