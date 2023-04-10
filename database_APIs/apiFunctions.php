@@ -1,6 +1,7 @@
 <?php
 
-//To import a function from this file, you must include the line: "require_once 'apiFunctions.php'"; in your PHP code.
+//To import a function from this file, you must include the line: "require_once 'database_APIs/apiFunctions.php'"; in your PHP code.
+
 //Then you may use any function by calling it normally (i.e. establish_connection() will work properly)
 //IMPORTANT: All parameters need to be sanatisied (to prevent injection attacks) prior to calling function.
 
