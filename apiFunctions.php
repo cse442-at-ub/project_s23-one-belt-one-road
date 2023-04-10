@@ -207,7 +207,6 @@ function searchItems($search){
     $result = $stmt->get_result();
     $stmt->close();
     close_connection($conn);
-    return $result;
     if (!$result) {
         return -1;
     }
