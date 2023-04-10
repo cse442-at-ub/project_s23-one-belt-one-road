@@ -201,13 +201,12 @@ function addToShoppingCart($userID, $productID, $amount){
 // Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure. Or flag value of 0 will be returned -> indicating no results were found in database
 function searchItems($search){
     $conn = establish_connection();
-    $stmt = $conn->prepare("CALL searchProduct(?)");
-    $stmt->bind_param("i", $search);
-    // Execute the statement
+    $stmt = $conn->prepare("SELECT * FROM product p WHERE p.product_name LIKE CONCAT('%',?,'%')");
+    $stmt->bind_param("s", $search);
     $stmt->execute();
     $result = $stmt->get_result();
-    close_connection($conn);
     $stmt->close();
+    close_connection($conn);
     if (!$result) {
         return -1;
     }
