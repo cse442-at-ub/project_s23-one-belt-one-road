@@ -20,20 +20,32 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
 <!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 <html>
     <body>
         <div>
 
-            <div style="float: right; display: flex; align-items: center;">
-                <a href="account.php" class="text-button" style="font-size: 18px; margin-top: -4px;">My Account</a>
-                <a href="cart.php">
-                    <img src="images/cart.png" alt="Shopping Cart" class="image-button" width="30">
-                </a>
+            <div style="float: right; display: flex; align-items: center; margin-top: -5px;">
+            <?php
+                session_start(); // Start the session
+                if (isset($_SESSION['username'])) { // If user is logged in
+                    echo '
+                        <a href="logout.php" class="text-button" style="font-size: 18px;">Log Out</a>
+                        <a href="account.php" class="text-button" style="font-size: 18px;">My Account</a>
+                        <a href="cart.php">
+                            <img src="images/cart.png" alt="Shopping Cart" class="image-button" width="30">
+                        </a>';
+                } else { // If user is not logged in
+                    echo '<a href="login.php" class="text-button" style="font-size: 18px; margin-top: 6px;">Log In</a>';
+                }
+            ?>
             </div>
 
-            <div style="float: left;">
-                <a href="index.php">
-                    <img src="/images/logo.png" alt="Logo" class="logo-button" width="120">
+            <div style="float: left; padding-top: 10px;">
+                <a href="index.php" class="logo-button">
+                    ubay
                 </a>
             </div>
 
