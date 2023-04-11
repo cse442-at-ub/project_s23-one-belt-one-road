@@ -18,7 +18,7 @@
 					require_once 'apiFunctions.php';
 					$result = getNItems(4);
 					if ($result == -1) {
-						echo "Error: Failed to get product data from API";
+						echo "<p>Error: Failed to get 4 products data from API</p>";
 	    				exit;
 					}
 					$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/images/';
