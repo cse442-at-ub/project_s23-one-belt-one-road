@@ -18,10 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
 	<title>Log In - Ubay</title>
-	<link rel="stylesheet" type="text/css" href="styleLogReg.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-<div class="container">
+<body class="login-register-body">
+<div class="login-register-page">
+	<a href="#" class="login-register-close-button" id="login-close-button" onclick="history.back(); return false;">X</a>
+	<div class="login-register-container">
 	<h1>Log In</h1>
 
 	<?php
@@ -37,9 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<label for="password">Password:</label>
 		<input type="password" id="password" name="password" required><br><br>
 
-		<input type="submit" value="Log In">
+		<input type="submit" value="Log In" class="blue-button-medium">
 	</form>
 	<p>New User? <a href="Register.php">Click here</a> to register</p>
+
+	</div>
 </div>
 </body>
 </html>
