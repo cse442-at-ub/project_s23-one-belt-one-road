@@ -8,7 +8,6 @@
     <header>
 		<?php require 'header.php'; ?>
 	</header>
-	<h1 style="color: #006ED3;">Products</h1>
 
 	<?php
 	require_once 'apiFunctions.php';
@@ -24,6 +23,7 @@
 				exit;
 			}
 			$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/images/';
+			echo '<h1 style="color: #006ED3;">' . $attr['product_name'] . '</h1>';
 			echo '<div class="item-container">';
 			while ($attr = $result->fetch_assoc()) {
 				$image_path = $image_location . $attr['image'];
@@ -34,6 +34,7 @@
 				echo '<h3">$ ' . $attr['unit_price'] . '</h3>';
 				echo '</div>';
 			}
+			echo '</div>';
 			
 		}else{
 			// if input is empty, fetch all items on sale
@@ -52,8 +53,8 @@
 				echo '<h3>' . $attr['product_name'] . '</h3>';
 				echo '<h3">$ ' . $attr['unit_price'] . '</h3>';
 				echo '</div>';
-			echo '</div>';
 			}
+			echo '</div>';
 		}
 	}
 	

@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <div style="clear: both;"></div>
 
             <div style="text-align: center; margin-top: -25px;">
-                <?php echo '<form action="itemlisting.php?keywords="'.$keywords.' method="get" class="search-bar">'?>
+                <form action="itemlisting.php?keywords="'.$keywords.' method="get" class="search-bar">
                     <input type="text" name="keywords" style="width: 500px;">
                         <button type="submit" class="blue-button" style="height: 30px;">SEARCH</button>
                 </form>
