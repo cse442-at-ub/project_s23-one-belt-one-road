@@ -70,11 +70,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 	<title>Registration Page</title>
-	<link rel="stylesheet" type="text/css" href="styleLogReg.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body>
-	<div class="container">
+<body class="login-register-body">
+<div class="login-register-page">
+	<a href="#" class="login-register-close-button" id="register-close-button" onclick="history.back(); return false;">X</a>
+	<div class="login-register-container">
 
 		<h1>Register for Ubay</h1>
 		<?php if (!empty($errors)) : ?>
@@ -98,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<label for="password2">Verify Password:</label>
 			<input type="password" name="password2" id="password2" required><br><br>
 
-			<input type="submit" value="Sign Up">
+			<input type="submit" value="Sign Up" class="blue-button-medium">
 		</form>
 		<p>Already have an account? <a href="login.php">Click here</a> to sign in</p>
 	</div>

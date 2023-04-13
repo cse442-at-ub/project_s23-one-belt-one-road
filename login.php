@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body class="login-register-body">
 <div class="login-register-page">
-	<a href="#" class="login-register-close-button" onclick="history.back(); return false;">X</a>
+	<a href="#" class="login-register-close-button" id="login-close-button" onclick="history.back(); return false;">X</a>
 	<div class="login-register-container">
 	<h1>Log In</h1>
 

@@ -350,9 +350,6 @@ input[type="number"] {
     transform: scale(1.5, 1);
     color: #A9A9A9;
     font-weight: 550;
-    position: absolute;
-    top: calc(50% - 179px);
-    right: calc(50% - 270px);
     padding-inline: 2px;
 }
 
@@ -360,4 +357,16 @@ input[type="number"] {
     text-decoration: none;
     background-color: #006ED3;
     color: white;
+}
+
+#login-close-button {
+    position: absolute;
+    top: calc(50% - 179px);
+    right: calc(50% - 270px);
+}
+
+#register-close-button {
+    position: absolute;
+    top: calc(50% - 244px);
+    right: calc(50% - 310px);
 }
