@@ -40,3 +40,9 @@ Shopping Cart
 2. `addToShoppingCart`(IN `userID` INT, IN `productID` INT, IN `amount` INT)
 
 3. `removeFromShoppingCart`(IN `userID` INT, IN `productID` INT)
+
+4. `clearShoppingCart`(IN `userID` INT)
+
+Transaction
+
+1. `addTransation`(IN `from_user` INT, IN `to_user` INT, IN `orderID` INT, IN `amount` INT)
