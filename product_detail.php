@@ -32,7 +32,7 @@
 			$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/images/';
 			$image_path = $image_location . $product['image'];
 		?>
-		<div class="product-image">
+		<div class="product-image-block-tall">
 			<img src="<?php echo $image_path ?>" alt="Product Image">
 		</div>
 		<div class="product-details">

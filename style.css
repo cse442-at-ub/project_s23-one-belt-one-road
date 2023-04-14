@@ -300,18 +300,139 @@ input[type="number"] {
 }
 
 /* ---------- Product detail page ---------- */
-.product-image {
+.product-image-block-tall {
+    /* border: solid 2px green;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column; */
+    text-align: center;
+}
+
+.product-image-block-tall img{
+    /* border: solid 2px red; */
     object-fit: cover;
     width: 400px;
     height: 400px;
-    margin-right: 15px;
 }
 
-.product-detail {
+.product-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.product-details table {
+  margin: 0 auto;
+}
+
+/*.product-details h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-details p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}*/
+
+.product-details .price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.product-details .btn {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.product-details .btn:hover {
+  background-color: #555;
+}
+
+
+/* Code below is specific for Login and Register Page */
+
+.login-register-body {
+    background-color: #B0CCE3;
+}
+
+.login-register-page {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 50px;
-    margin-top: 50px;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-register-page h1 {
+    font-size: 35px;
+}
+
+.login-register-container {
+    background-color: white;
+    border: 4px solid #006ED3;
+    padding-inline: 100px;
+    padding-block: 35px;
+}
+
+.login-register-container .blue-button-medium:hover {
+    cursor: pointer;
+}
+
+.login-register-container a:hover {
+    text-decoration: underline;
+}
+
+.blue-button-medium {
+    background-color: #006ED3;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 550;
+/*    padding-block: 15px;*/
+    padding-inline: 25px;
+    margin: 5px;
+    height: 35px;
+}
+
+.login-register-close-button {
+    display: inline-block;
+    transform: scale(1.5, 1);
+    color: #A9A9A9;
+    font-weight: 550;
+    padding-inline: 2px;
+}
+
+.login-register-close-button:hover {
+    text-decoration: none;
+    background-color: #006ED3;
+    color: white;
+}
+
+#login-close-button {
+    position: absolute;
+    top: calc(50% - 179px);
+    right: calc(50% - 270px);
+}
+
+#register-close-button {
+    position: absolute;
+    top: calc(50% - 244px);
+    right: calc(50% - 310px);
 }
