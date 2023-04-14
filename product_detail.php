@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Product Detail</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="CSS/style.css">
 	<script src="script.js"></script>
 	<?php require('header.php'); ?>
 </head>

@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
 	<title>Payment Page</title>
-	<link rel="stylesheet" type="text/css" href="payment-confirm.css">
+	<link rel="stylesheet" type="text/css" href="CSS/payment-confirm.css">
 </head>
 <body>
 	<header>
