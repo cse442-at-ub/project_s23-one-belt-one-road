@@ -10,7 +10,7 @@
 	</header>
 
 	<?php
-	require_once 'apiFunctions.php';
+	require_once 'database_APIs/apiFunctions.php';
 	if(isset($_GET['keywords'])){
 		$keywords = filter_var($_GET['keywords'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 		$errors = [];

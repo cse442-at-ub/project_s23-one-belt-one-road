@@ -10,7 +10,7 @@
 <body>
 	<div id="content">
 		<?php
-			require_once 'apiFunctions.php';
+			require_once 'database_APIs/apiFunctions.php';
 			if (!isset($_GET['productID']) || empty($_GET['productID'])) {
 				echo "<p>No product ID specified.</p>";
 				exit;

@@ -375,6 +375,64 @@ input[type="number"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
-    margin-top: 50px;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-register-page h1 {
+    font-size: 35px;
+}
+
+.login-register-container {
+    background-color: white;
+    border: 4px solid #006ED3;
+    padding-inline: 100px;
+    padding-block: 35px;
+}
+
+.login-register-container .blue-button-medium:hover {
+    cursor: pointer;
+}
+
+.login-register-container a:hover {
+    text-decoration: underline;
+}
+
+.blue-button-medium {
+    background-color: #006ED3;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 550;
+/*    padding-block: 15px;*/
+    padding-inline: 25px;
+    margin: 5px;
+    height: 35px;
+}
+
+.login-register-close-button {
+    display: inline-block;
+    transform: scale(1.5, 1);
+    color: #A9A9A9;
+    font-weight: 550;
+    padding-inline: 2px;
+}
+
+.login-register-close-button:hover {
+    text-decoration: none;
+    background-color: #006ED3;
+    color: white;
+}
+
+#login-close-button {
+    position: absolute;
+    top: calc(50% - 179px);
+    right: calc(50% - 270px);
+}
+
+#register-close-button {
+    position: absolute;
+    top: calc(50% - 244px);
+    right: calc(50% - 310px);
 }

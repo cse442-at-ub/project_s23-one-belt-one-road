@@ -15,7 +15,7 @@
 			<h1 style="font-style: italic; margin-bottom: 50px;">Trending</h1>
 			<div style="text-align: center;">
 				<?php
-					require_once 'apiFunctions.php';
+					require_once 'database_APIs/apiFunctions.php';
 					$result = getNItems(4);
 					if ($result == -1) {
 						echo "<p>Error: Failed to get 4 products data from API</p>";
