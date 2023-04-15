@@ -1,5 +1,6 @@
 <?php
 // Check if the form was submitted
+require_once 'database_APIs/apiFunctions.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// Get the form input values
@@ -10,11 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Validate the input
 	$errors = [];
 	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-	$serverName = "oceanus.cse.buffalo.edu:3306";
-	$dbUser = "UBIT NAME";
-	$dbPass = "PERSON NUM";
-	$dbName = "cse442_2023_spring_team_j_db";
-	$conn = mysqli_connect($serverName, $dbUser, $dbPass, $dbName);
+	$conn = establish_connection();
 	if (empty($username)) {
 		$errors[] = "Username is required.";
 	} elseif (!preg_match('/^[a-zA-Z0-9]+$/', $username)) {
@@ -53,14 +50,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		VALUES ('$username', '$email', '$hashed_password')";
 		
 		if ($conn->query($sql) === TRUE) {
-		  echo "New account created successfully";
+		  $conn->close();
+		//   echo "New account created successfully";
 		  header("Location: login.php");
 
 		} else {
-		//   echo "Error: " . $sql . "<br>" . $conn->error;
+		  echo "Error: " . $sql . "<br>" . $conn->error;
 		}
-		
-		$conn->close();
 	}
 }
 ?>

@@ -1,16 +1,13 @@
 <?php
+require_once 'database_APIs/apiFunctions.php';
 session_start();
-require_once 'apiFunctions.php';
 // Check if the form has been submitted
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// Retrieve the username and password from the form data
 	$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-	if (empty($errors)) {
-		$login_error = login($username, $password);
-		echo $login_error;
-	}
+	$error_msg = login($username , $password);
 }
 ?>
 
