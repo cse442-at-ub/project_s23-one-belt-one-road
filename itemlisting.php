@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Item Listing Page</title>
-	<link rel="stylesheet" href="itemlisting.css">
+	<link rel="stylesheet" href="CSS/itemlisting.css">
 </head>
 <body>
     <header>
