@@ -259,7 +259,7 @@ function clearUserCart($userID){
     }
 }
 
-//This function takes in parameters $fromUserID representing the buyer, $toUserID representing the seller, $orderID, and $amount which represents the number of items purchased 
+//This function takes in parameters $fromUserID representing the buyer, $toUserID representing the seller, $orderID, and $amount and $amount which represents the dollar amount of the purchased 
 // -1 return value indicates an error executing the procedure. 1 indicates the cart was cleared
 function addTransaction($fromUserID, $toUserID, $orderID, $amount){
     $conn = establish_connection();
