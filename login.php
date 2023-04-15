@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
 	<title>Log In - Ubay</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="CSS/style.css">
 </head>
 <body class="login-register-body">
 <div class="login-register-page">
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		<input type="submit" value="Log In" class="blue-button-medium">
 	</form>
-	<p>New User? <a href="Register.php">Click here</a> to register</p>
+	<p>New User? <a href="register.php">Click here</a> to register</p>
 
 	</div>
 </div>
