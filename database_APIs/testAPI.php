@@ -71,15 +71,6 @@
         else {
                 echo "Deleted cart for user 1";
             }
-        
-                echo "\nClearing cart for user ID = 1\n";
-        $items = clearUserCart(1);
-        if ($items == -1){
-            echo "Error during api call";
-        }
-        else {
-                echo "Deleted cart for user 1\n";
-            }
         echo " <div> Adding transaction from 1, to = 2, order ID = 2  , ammount = 8 <div>";
         $res = addTransaction(1 , 2 , 2 , 8);
         if ($res == -1){
