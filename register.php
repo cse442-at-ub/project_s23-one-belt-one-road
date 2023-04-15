@@ -1,6 +1,6 @@
 <?php
 // Check if the form was submitted
-require_once 'apiFunctions.php';
+require_once 'database_APIs/apiFunctions.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// Get the form input values
