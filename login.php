@@ -1,5 +1,5 @@
 <?php
-require_once 'apiFunctions.php';
+require_once 'database_APIs/apiFunctions.php';
 // Check if the form has been submitted
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
