@@ -4,7 +4,7 @@
 	<title>Ubay</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 	<header>
@@ -15,30 +15,28 @@
 			<h1 style="font-style: italic; margin-bottom: 50px;">Trending</h1>
 			<div style="text-align: center;">
 				<?php
-					// Connect to database and retrieve featured products
-					// Loop through products and generate HTML code
+					require_once 'database_APIs/apiFunctions.php';
+					$result = getNItems(4);
+					if ($result == -1) {
+						echo "<p>Error: Failed to get 4 products data from API</p>";
+	    				exit;
+					}
+					$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/images/';
+					echo '<ul class="landing-item-list">';
+					while ($row = $result->fetch_assoc()) {
+						$image_path = $image_location . $row['image'];
+						$product_path = 'product_detail.php?productID=' . $row['id'];
+						echo '<li class="item-block-tall">';
+						echo '<a href="' . $product_path . '"><img src="' . $image_path . '" alt="item" class="item-image-button"></br>' . $row['product_name'] . '</a>';
+						echo '<span class="landing-item-title">$ ' . $row['unit_price'] . '</span>';
+						echo '</li>';
+					}
+					echo '</ul>';
 				?>
-				<ul class="landing-item-list">
-					<li class="item-block-tall">
-						<a href="product_detail.php"><img src="/images/item-spam.png" alt="item" class="item-image-button"></br>SPAM 12 OZ</a>
-						<span class="landing-item-title">$ 4.42<span>
-					</li>
-					<li class="item-block-tall">
-						<a href="product_detail.php"><img src="/images/item-mug.png" alt="item" class="item-image-button"></br>Handmade Mug</a>
-						<span class="landing-item-title">$ 22.4<span>
-					</li>
-					<li class="item-block-tall">
-						<a href="product_detail.php"><img src="/images/item-bag.jpg" alt="item" class="item-image-button"></br>Amuseable Sun</a>
-						<span class="landing-item-title">$ 44.2<span>
-					</li>
-					<li class="item-block-tall">
-						<a href="product_detail.php"><img src="/images/item-fries.jpg" alt="item" class="item-image-button"></br>Just Potatoes</a>
-						<span class="landing-item-title">$ 2.24<span>
-					</li>
-				</ul>
+
 			</div>
 			<p style="margin-top: 40px;">Get access to exclusive products from students.</p>
-			<a href="#" class="text-button" style="text-align: right;">See All</a>
+			<a href="<?php echo ($_SERVER['SERVER_NAME'] == 'localhost') ? '/itemlisting.php?keywords=' : '/CSE442-542/2023-Spring/cse-442j/itemlisting.php?keywords=' ?>" class="text-button" style="text-align: right;">See All</a>
 		</section>
 	</main>
 	<?php require 'footer.php'; ?>

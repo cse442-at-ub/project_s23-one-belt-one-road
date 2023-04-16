@@ -1,19 +1,48 @@
 Stored Procedures:
 
 User
+
 1. `createUser`(IN `userName` VARCHAR(20), IN `password` VARCHAR(20), IN `email` VARCHAR(50))
+
 2. `getAllUsers`()
+
 3. `getUserByID`(IN `userID` INT)
 
+
 Product
+
 1. `createProduct`(IN `productName` VARCHAR(20), IN `ownerID` INT, IN `description` VARCHAR(200), IN `unitPrice` INT, IN `inventory` INT)
+
 2. `getAllProduct`()
+
 3. `getProductByID`(IN `productID` INT)
+
 4. `getProductByUserID`(IN `userID` INT)
 
+5. `getLandingPageProduct`(IN `number` INT)
+
+6. `searchProduct`(IN `search` VARCHAR(100))
+
+
 Order
+
 1. `createOrder`(IN `customerID` INT, IN `amount` FLOAT, IN `order_date` DATETIME, IN `description` VARCHAR(200))
+
 2. `getAllOrders`()
+
 3. `getOrderByID`(IN `orderID` INT)
 
 
+Shopping Cart
+
+1. `getShoppingCartByUserID`(IN `userID` INT)
+
+2. `addToShoppingCart`(IN `userID` INT, IN `productID` INT, IN `amount` INT)
+
+3. `removeFromShoppingCart`(IN `userID` INT, IN `productID` INT)
+
+4. `clearShoppingCart`(IN `userID` INT)
+
+Transaction
+
+1. `addTransation`(IN `from_user` INT, IN `to_user` INT, IN `orderID` INT, IN `amount` INT)

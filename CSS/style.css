@@ -1,0 +1,438 @@
+body {
+    font-family: "Trebuchet MS", Verdana, Arial;
+    margin: 0 auto;
+    padding-block: 10px;
+    padding-inline: 30px;
+}
+
+h1 {
+    color: #006ED3;
+    font-size: 30px;
+}
+
+h2 {
+    color: #006ED3;
+    font-size: 25px;
+}
+
+p {
+  font-size: 18px;
+}
+
+a {
+    font-size: 20px;
+    font-weight: 550;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button {
+    font-family: "Trebuchet MS", Verdana, Arial;
+    cursor: pointer;
+}
+
+.text-button {
+    color: #006ED3;
+    font-weight: 550;
+    margin-left: 5px;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.text-button:hover {
+    text-decoration: underline;
+}
+
+.image-button {
+    padding: 1px;
+    margin-top: 6px;
+}
+
+.image-button:hover {
+    border-radius: 10px;
+    outline: 3px solid #006ED3;
+}
+
+.item-image-button {
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 8px;
+}
+.item-image-button:hover {
+    outline: 6px solid #006ED3;
+}
+
+.logo-button {
+    color: #006ED3;
+    font-size: 55px;
+    cursor: pointer;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.logo-button:hover {
+    border-radius: 15px;
+    outline: 6px solid #006ED3;
+    /* outline-style: ; */
+}
+
+.blue-button {
+    background-color: #006ED3;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 550;
+    padding-block: 5px;
+    padding-inline: 15px;
+    margin: 5px;
+}
+
+.item-block-long {
+    border: solid 1px black;
+    height: 100px;
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; 
+    padding-right: 10px;
+}
+
+.item-block-long-info {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    align-items: center; 
+}
+
+.item-block-long-image {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+}
+
+.item-blocks-long {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.centered-link {
+    display: flex;
+    align-items: center;
+    margin-right: 15px; 
+}
+
+label {
+  font-size: 18px;
+}
+
+input {
+    background-color: #D9D9D9;
+    border: none;
+    font-family: "Trebuchet MS", Verdana, Arial;
+    font-weight: 500;
+    height: 30px;
+    margin: 5px;
+    padding-inline: 10px;
+}
+
+input[type="number"] {
+    width: 30px;
+    padding-right: 20px; /* add space for the buttons */
+    position: relative;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    /* Adjust the style of the number adjustment buttons */
+    
+    opacity: 1; /* Also visible when not hovering */
+
+    height: 100%;
+    width: 1.5em;
+    background-color: #ccc;
+    border-radius: 50%;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* Landing Page */
+
+.landing-item-list {
+    list-style: none; 
+    display: flex; 
+    gap: 50px; 
+    flex-direction: row; 
+    justify-content: center; 
+    padding: 0;
+}
+
+.item-block-tall {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.landing-item-title {
+    color: #006ED3;
+    font-family: "Trebuchet MS", Verdana, Arial;
+    font-size: 25px;
+    font-weight: 550;
+    margin-top: 8px;
+}
+
+/* For Firefox */
+input[type="number"] {
+  /* Remove the default styling for the number input box */
+  -moz-appearance: textfield;
+}
+
+/* Shopping Cart: */
+
+.item-amount {
+    text-align: center;
+    font-size: 18px;
+    padding-block:0px;
+    padding-left: 3px;
+    min: 0;
+}
+
+.item-price {
+    color: #006ED3;
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 550;
+}
+
+.item-subtotal {
+    font-size: 18px;
+    font-weight: 550;
+}
+
+.cart-remove-button {
+    border: none;
+    background-color: #A9D0F5;
+    color: white;
+    font-weight: 550;
+    padding-block: 5px;
+    padding-inline: 15px;
+    margin: 5px;
+}
+
+.cart-remove-button:hover {
+    background-color: #006ED3;
+}
+
+/* Account Page */
+
+.flex-container {
+    display: flex; 
+    flex: 1;
+    padding-inline: 27%;
+}
+
+.account-blocks {
+/*    border: solid 6px #64A1D9;*/
+    margin-inline: 30px;
+    padding-inline: 70px;
+    padding-bottom: 30px;
+    /*
+    display: flex;
+    flex: 1;
+    gap: 200px; 
+    flex-direction: row; 
+    justify-content: center; 
+    padding: 0;
+    */
+}
+
+.account-info {
+    border-right: solid 4px #64A1D9;
+/*    background-color: #64A1D9;*/
+    color: #006ED3;
+    padding: 30px;
+    min-width: 225px;
+}
+
+.account-info-list {
+/*    list-style: none;*/
+/*    text-align: left;*/
+}
+
+.info-title {
+    font-size: 20px;
+    font-weight: 550;
+    margin: 0px;
+}
+
+.info-block {
+    margin-block: 10px;
+}
+
+.info-content {
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0px;
+}
+
+.mode-block {
+/*    margin-block: 50px;*/
+}
+
+.blue-button-large {
+    background-color: #006ED3;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 550;
+    padding-inline: 30px;
+    height: 100px;
+    width: 180px;
+    margin: 5px;
+}
+
+/* ---------- Product detail page ---------- */
+.product-image-block-tall {
+    /* border: solid 2px green;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column; */
+    text-align: center;
+}
+
+.product-image-block-tall img{
+    /* border: solid 2px red; */
+    object-fit: cover;
+    width: 400px;
+    height: 400px;
+}
+
+.product-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.product-details table {
+  margin: 0 auto;
+}
+
+/*.product-details h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-details p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}*/
+
+.product-details .price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.product-details .btn {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.product-details .btn:hover {
+  background-color: #555;
+}
+
+
+/* Code below is specific for Login and Register Page */
+
+.login-register-body {
+    background-color: #B0CCE3;
+}
+
+.login-register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-register-page h1 {
+    font-size: 35px;
+}
+
+.login-register-container {
+    background-color: white;
+    border: 4px solid #006ED3;
+    padding-inline: 100px;
+    padding-block: 35px;
+}
+
+.login-register-container .blue-button-medium:hover {
+    cursor: pointer;
+}
+
+.login-register-container a:hover {
+    text-decoration: underline;
+}
+
+.blue-button-medium {
+    background-color: #006ED3;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 550;
+/*    padding-block: 15px;*/
+    padding-inline: 25px;
+    margin: 5px;
+    height: 35px;
+}
+
+.login-register-close-button {
+    display: inline-block;
+    transform: scale(1.5, 1);
+    color: #A9A9A9;
+    font-weight: 550;
+    padding-inline: 2px;
+}
+
+.login-register-close-button:hover {
+    text-decoration: none;
+    background-color: #006ED3;
+    color: white;
+}
+
+#login-close-button {
+    position: absolute;
+    top: calc(50% - 179px);
+    right: calc(50% - 270px);
+}
+
+#register-close-button {
+    position: absolute;
+    top: calc(50% - 244px);
+    right: calc(50% - 310px);
+}
