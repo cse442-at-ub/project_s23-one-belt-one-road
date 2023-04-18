@@ -233,3 +233,11 @@ function getProductByID($productID) {
     }
     return $result->fetch_assoc();
 }
+
+// New added function by Jiajun on 4/17
+function addToCart($userID, $productID, $quantity, $unitPrice) {
+    $sql = "INSERT INTO cart (user_id, product_id, quantity, unit_price)
+            VALUES ($userID, $productID, $quantity, $unitPrice)";
+    $result = executeQuery($sql);
+    return $result;
+}

@@ -55,14 +55,49 @@
 					<td>Seller Rating:</td>
 					<td>4.42/5</td>
 				</tr>
-				<tr>
+				<tr id="price-row">
 					<td>Price:</td>
 					<td class="price">$<?php echo number_format($product['unit_price'], 2) ?></td>
 				</tr>
 			</table>
-			<button id="add-to-cart">Add to Cart</button>
+			<button id="add-to-cart-btn">Add to Cart</button>
 		</div>
 	</div>
 	<?php require('footer.php'); ?>
 </body>
+<script>
+    const addToCartBtn = document.getElementById('add-to-cart-btn');
+    const priceRow = document.getElementById('price-row');
+    const productId = '<?php echo $productID ?>';
+    const productPrice = '<?php echo $product['unit_price'] ?>';
+
+    addToCartBtn.addEventListener('click', () => {
+        addToCart(productId, productPrice);
+    });
+
+    function addToCart(productId, productPrice) {
+        const cartData = {
+            product_id: productId,
+            quantity: 1,
+            unit_price: productPrice,
+        };
+
+        fetch('/api/cart.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(cartData),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Product added to cart!');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Failed to add product to cart. Please try again later.');
+            });
+    }
+</script>
 </html>
