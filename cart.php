@@ -1,3 +1,28 @@
+<?php
+require_once 'apiFunctions.php';
+session_start();
+$userID = $_SESSION['user_id'];
+
+// Add product to cart if form submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true);
+    $productID = $data['product_id'];
+    $quantity = $data['quantity'];
+    $unitPrice = $data['unit_price'];
+
+    $result = addToCart($userID, $productID, $quantity, $unitPrice);
+
+    if ($result) {
+        $response = array('success' => true, 'message' => 'Product added to cart');
+    } else {
+        $response = array('success' => false, 'message' => 'Failed to add product to cart');
+    }
+
+    echo json_encode($response);
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

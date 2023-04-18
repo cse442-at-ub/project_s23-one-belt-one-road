@@ -235,6 +235,23 @@ function getProductByID($productID) {
 }
 
 // New added function by Jiajun on 4/17
+function executeQuery($sql) {
+    $username = 'fenghaih';
+    $password = '50315030';
+    $serverName = "oceanus.cse.buffalo.edu:3306";
+    $dbName = "cse442_2023_spring_team_j_db";
+    $conn = mysqli_connect($serverName, $username, $password, $dbName);
+
+    // Execute the query
+    $result = mysqli_query($conn, $sql);
+
+    // Close the connection to the database
+    mysqli_close($conn);
+
+    // Return the result of the query
+    return $result;
+}
+
 function addToCart($userID, $productID, $quantity, $unitPrice) {
     $sql = "INSERT INTO cart (user_id, product_id, quantity, unit_price)
             VALUES ($userID, $productID, $quantity, $unitPrice)";
