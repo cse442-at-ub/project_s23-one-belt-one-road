@@ -50,6 +50,7 @@ function login($username , $password) {
 		if (password_verify($password, $hashed_password)) {
 			$_SESSION['logged_in'] = true;
 			$_SESSION['username'] = $username;
+            $_SESSION['user_id'] = $row['id'];
 			$email_query = mysqli_query($conn, "SELECT email FROM user WHERE username = '$username'");
 			$email_row = mysqli_fetch_assoc($email_query);
 			$_SESSION['email'] = $email_row['email'];
@@ -234,27 +235,24 @@ function getProductByID($productID) {
     return $result->fetch_assoc();
 }
 
-// New added function by Jiajun on 4/17
-function executeQuery($sql) {
-    $username = 'fenghaih';
-    $password = '50315030';
-    $serverName = "oceanus.cse.buffalo.edu:3306";
-    $dbName = "cse442_2023_spring_team_j_db";
-    $conn = mysqli_connect($serverName, $username, $password, $dbName);
+// New added function by Jiajun on 4/21
+function getCartItems($userID) {
+    $conn = establish_connection();
 
-    // Execute the query
-    $result = mysqli_query($conn, $sql);
+    $sql = "SELECT c.product_id, p.product_name, p.product_image, p.price, c.amount
+            FROM shopping_cart c
+            INNER JOIN product p ON c.product_id = p.id
+            WHERE c.user_id = ?";
 
-    // Close the connection to the database
-    mysqli_close($conn);
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    close_connection($conn);
 
-    // Return the result of the query
-    return $result;
-}
-
-function addToCart($userID, $productID, $quantity, $unitPrice) {
-    $sql = "INSERT INTO cart (user_id, product_id, quantity, unit_price)
-            VALUES ($userID, $productID, $quantity, $unitPrice)";
-    $result = executeQuery($sql);
-    return $result;
+    if ($result->num_rows > 0) {
+        return $result;
+    } else {
+        return false;
+    }
 }

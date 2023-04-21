@@ -60,44 +60,25 @@
 					<td class="price">$<?php echo number_format($product['unit_price'], 2) ?></td>
 				</tr>
 			</table>
-			<button id="add-to-cart-btn">Add to Cart</button>
+			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?productID=" . $productID; ?>">
+                    <input type="submit" name="add_to_cart" value="Add to Cart">
+            </form>
 		</div>
 	</div>
+	<?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['add_to_cart'])) {
+                $userID = $_SESSION['user_id']; // Ensure the user ID is set in the session when the user logs in
+                $result = addToShoppingCart($userID, $productID, 1); // Assuming a default quantity of 1
+
+                if ($result == 1) {
+                    echo '<script>alert("Item added to cart successfully.")</script>';
+                } else {
+                    echo '<script>alert("Error: Failed to add item to cart.")</script>';
+                }
+            }
+        }
+    ?>
 	<?php require('footer.php'); ?>
 </body>
-<script>
-    const addToCartBtn = document.getElementById('add-to-cart-btn');
-    const priceRow = document.getElementById('price-row');
-    const productId = '<?php echo $productID ?>';
-    const productPrice = '<?php echo $product['unit_price'] ?>';
-
-    addToCartBtn.addEventListener('click', () => {
-        addToCart(productId, productPrice);
-    });
-
-    function addToCart(productId, productPrice) {
-        const cartData = {
-            product_id: productId,
-            quantity: 1,
-            unit_price: productPrice,
-        };
-
-        fetch('/api/cart.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(cartData),
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                alert('Product added to cart!');
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('Failed to add product to cart. Please try again later.');
-            });
-    }
-</script>
 </html>
