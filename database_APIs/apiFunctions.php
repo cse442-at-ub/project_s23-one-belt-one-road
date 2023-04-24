@@ -53,6 +53,9 @@ function login($username , $password) {
 			$email_query = mysqli_query($conn, "SELECT email FROM user WHERE username = '$username'");
 			$email_row = mysqli_fetch_assoc($email_query);
 			$_SESSION['email'] = $email_row['email'];
+            $id_query = mysqli_query($conn, "SELECT id FROM user WHERE username = '$username'");
+            $id_row = mysqli_fetch_assoc($id_query);
+            $_SESSION['user_id'] = $id_row['id'];
 			echo '<p style="color: green;">' . "Successful login!" . '</p>';
             close_connection($conn);
 			header('Location: account.php');
@@ -60,12 +63,12 @@ function login($username , $password) {
 		else {
             close_connection($conn);
 			 return $error_msg;
-				}
 		}
-		else {
-            close_connection($conn);
-            return $error_msg;
-		}
+	}
+	else {
+        close_connection($conn);
+        return $error_msg;
+	}
 }
 
 //This function takes the string username, email, password, and password2 input from the user after submitting register form
