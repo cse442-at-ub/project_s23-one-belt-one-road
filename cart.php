@@ -98,7 +98,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 				}
 
 				// Remove items from shopping cart
-				function removeFromCart(userID, productID, amount) {
+				function removeFromCart(userID, productID) {
 				    // Send an AJAX request to the server-side PHP file
 				    return new Promise(function(resolve, reject) {
 					    var xmlhttp = new XMLHttpRequest();
@@ -120,7 +120,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 				                }
 					        } 
 					    };
-					    xmlhttp.open("GET", "removeFromCart.php?userID=" + userID + "&productID=" + productID + "&amount=" + amount, true);
+					    xmlhttp.open("GET", "removeFromCart.php?userID=" + userID + "&productID=" + productID, true);
 					    xmlhttp.send();
 					});
 				}
