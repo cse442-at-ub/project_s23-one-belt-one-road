@@ -71,8 +71,10 @@
         else {
                 echo "Deleted cart for user 1";
             }
-        echo " <div> Adding transaction from 1, to = 2, order ID = 2  , ammount = 8 <div>";
-        $res = addTransaction(1 , 2 , 2 , 8);
+        
+                echo "\nClearing cart for user ID = 1\n";
+        echo " <div> Adding transaction from 3, to = 2, ammount = 8 , description = Desc , shipping = ship <div>";
+        $res = addTransaction(3 , 2 , 2 , "Desc" , 'Ship');
         if ($res == -1){
             echo "Error during api call";
         }
