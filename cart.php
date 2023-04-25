@@ -28,27 +28,23 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 					
 					while ($cart_row = $cart_result->fetch_assoc()) {
 
-						// $product_id = intval($cart_row['productID']);
-						$item_detail_result = getProductByID($cart_row['productID']);
-						if ($item_detail_result == -1) {
-							echo "<p>Error: Failed to get specific item data from API</p>";
-		    				exit;
-						} else if ($item_detail_result == 0){
-							echo "<p>Error: No specific item data from database</p>";
-		    				exit;
-						}
-
-						$image_path = $image_location . $item_detail_result['image'];
+						// Print out all column name and value in the $cart_row for testing
+					    // $fields = mysqli_fetch_fields($cart_result);
+						// foreach ($fields as $field) {
+						//     echo $field->name . ": " . $cart_row[$field->name] . "<br>";
+						// }
+			
+						$image_path = $image_location . $cart_row['image'];
 						$product_path = 'product_detail.php?productID=' . $cart_row['productID'];
 						echo '<div id="cartItem" class="item-block-long">';
 
 							echo '<div class="item-block-long-info">';
-								echo '<a href="' . $product_path . '" class="centered-link"><img src="' . $image_path . '" alt="item" class="item-block-long-image">' . $item_detail_result['product_name'] . '</a>';
-								echo '<span class="item-price" type="number">$ ' . $item_detail_result['unit_price'] . '</span>';
+								echo '<a href="' . $product_path . '" class="centered-link"><img src="' . $image_path . '" alt="item" class="item-block-long-image">' . $cart_row['productName'] . '</a>';
+								echo '<span class="item-price" type="number">$ ' . $cart_row['unitPrice'] . '</span>';
 							echo '</div>';
 
-							echo '<input type="number" class="item-amount" value="1">';
-							echo '<span class="item-subtotal">Subtotal $ '. $item_detail_result['unit_price'] . '</span>';
+							echo '<input type="number" class="item-amount" value="' . $cart_row['amount'] . '">';
+							echo '<span class="item-subtotal">Subtotal $ '. $cart_row['amount'] * $cart_row['unitPrice'] . '</span>';
 							echo '<button class="cart-remove-button">REMOVE</button>';
 						echo '</div>';
 					}
