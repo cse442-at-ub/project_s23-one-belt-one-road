@@ -45,10 +45,53 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 
 							echo '<input type="number" class="item-amount" value="' . $cart_row['amount'] . '">';
 							echo '<span class="item-subtotal">Subtotal $ '. $cart_row['amount'] * $cart_row['unitPrice'] . '</span>';
-							echo '<button class="cart-remove-button">REMOVE</button>';
+							echo '<button class="cart-remove-button" data-product-id="' . $cart_row['productID'] . '">REMOVE</button>';
 						echo '</div>';
 					}
 				?>
+
+				<script>
+				// Remove items from shopping cart
+				function removeFromCart(userID, productID, amount) {
+				    // Send an AJAX request to the server-side PHP file
+				    return new Promise(function(resolve, reject) {
+					    var xmlhttp = new XMLHttpRequest();
+					    xmlhttp.onreadystatechange = function() {
+					        if (this.readyState == 4) {
+					        	if (this.status == 200) {
+					        		// Handle the response from the server
+						            var response = JSON.parse(this.responseText);
+						            console.log(response);
+						            if (response.success) {
+				                        resolve(response.message);
+				                    } else {
+				                        reject(new Error(response.message));
+				                    }
+					        	}
+					            else {
+						        	console.log(this.readyState, this.status);
+				                    reject(new Error("Failed to remove item from cart"));
+				                }
+					        } 
+					    };
+					    xmlhttp.open("GET", "removeFromCart.php?userID=" + userID + "&productID=" + productID + "&amount=" + amount, true);
+					    xmlhttp.send();
+					});
+				}
+
+				// Attach a click event listener to the "REMOVE" button
+				var removeButtons = document.getElementsByClassName("cart-remove-button");
+				for (var i = 0; i < removeButtons.length; i++) {
+				    removeButtons[i].addEventListener("click", function() {
+				        var userID = <?php echo $user_id; ?>;
+				        var productID = this.getAttribute("data-product-id");
+				        var amount = this.parentNode.querySelector(".item-amount").value;
+				        removeFromCart(userID, productID, amount)
+				        .then(() => location.reload(true))
+				        .catch(error => console.error(error.message));
+				    });
+				}
+				</script>
 
 					<!-- Old Template
 					<div id="cartItem" class="item-block-long">
