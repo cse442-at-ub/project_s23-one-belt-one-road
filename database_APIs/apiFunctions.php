@@ -262,12 +262,13 @@ function clearUserCart($userID){
     }
 }
 
-//This function takes in parameters $fromUserID representing the buyer, $toUserID representing the seller, $orderID, and $amount and $amount which represents the dollar amount of the purchased 
-// -1 return value indicates an error executing the procedure. 1 indicates the cart was cleared
-function addTransaction($fromUserID, $toUserID, $orderID, $amount){
+//This function takes in integer parameters $fromUserID representing the buyer, $toUserID representing the seller, $amount which represents the dollar amount of the purchase
+// This function takes in string parameters $description which represents the item description and $shipping which represents the shipping address of the buyer
+// -1 return value indicates an error executing the procedure. 1 indicates the transaction was added
+function addTransaction($fromUserID, $toUserID, $amount , $description, $shipping){
     $conn = establish_connection();
-    $stmt = $conn->prepare("CALL addTransation(?, ? , ? , ?)");
-    $stmt->bind_param("iiii", $fromUserID, $toUserID, $orderID , $amount);
+    $stmt = $conn->prepare("CALL addTransation(?, ? , ? , ? , ?)");
+    $stmt->bind_param("iiiss", $fromUserID, $toUserID, $amount , $description, $shipping);
     // Execute the statement
     $stmt->execute();
     // Handle the result
