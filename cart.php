@@ -46,7 +46,20 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 									echo '<span class="item-price" type="number">$ ' . $cart_row['unitPrice'] . '</span>';
 								echo '</div>';
 
-								echo '<input type="number" class="item-amount" value="' . $cart_row['amount'] . '">';
+								echo '<input id="cartItem-amount-' . $cart_row['productID'] . '" type="number" class="item-amount" value="' . $cart_row['amount'] . '">';
+									echo '<script>
+										document.getElementById("cartItem-amount-' . $cart_row['productID'] . '").addEventListener("change", function() {
+											calculateTotal()
+											.then(() => {
+												var userID = "' . $user_id . '";
+											    var productId = "' . $cart_row['productID'] . '";
+											    var amountChange = this.value - ' . $cart_row['amount'] . ';
+											    updateCart(userID, productId, amountChange)
+											    .then(() => location.reload(true))
+					        					.catch(error => console.error(error.message));
+											});
+										});
+									</script>';
 								echo '<span class="item-subtotal">Subtotal $ '. $cart_row['amount'] * $cart_row['unitPrice'] . '</span>';
 								echo '<button class="cart-remove-button" data-product-id="' . $cart_row['productID'] . '">REMOVE</button>';
 							echo '</div>';
@@ -55,6 +68,35 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 				?>
 
 				<script>
+
+				// Update an item amount in shopping cart
+				function updateCart(userID, productID, amountChange) {
+					return new Promise(function(resolve, reject) {
+						console.log("Passing parameters to XML", userID, productID, amountChange);
+					    var xhr = new XMLHttpRequest();
+					    xhr.onreadystatechange = function() {
+					        if (this.readyState == 4) {
+					        	if (this.status == 200) {
+					        		// Handle the response from the server
+						            var response = JSON.parse(this.responseText);
+						            console.log(response);
+						            if (response.success) {
+				                        resolve(response.message);
+				                    } else {
+				                        reject(new Error(response.message));
+				                    }
+					        	}
+					            else {
+						        	console.log(this.readyState, this.status);
+				                    reject(new Error("Failed to update item amount from cart"));
+				                }
+					        }
+					    }
+					    xhr.open("GET", "updateCart.php?userID=" + userID + "&productID=" + productID + "&amountChange=" + amountChange, true);
+					    xhr.send();
+					});
+				}
+
 				// Remove items from shopping cart
 				function removeFromCart(userID, productID, amount) {
 				    // Send an AJAX request to the server-side PHP file
