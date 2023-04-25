@@ -50,10 +50,12 @@ function login($username , $password) {
 		if (password_verify($password, $hashed_password)) {
 			$_SESSION['logged_in'] = true;
 			$_SESSION['username'] = $username;
-            $_SESSION['user_id'] = $row['id'];
 			$email_query = mysqli_query($conn, "SELECT email FROM user WHERE username = '$username'");
 			$email_row = mysqli_fetch_assoc($email_query);
 			$_SESSION['email'] = $email_row['email'];
+            $id_query = mysqli_query($conn, "SELECT id FROM user WHERE username = '$username'");
+            $id_row = mysqli_fetch_assoc($id_query);
+            $_SESSION['user_id'] = $id_row['id'];
 			echo '<p style="color: green;">' . "Successful login!" . '</p>';
             close_connection($conn);
 			header('Location: account.php');
@@ -61,12 +63,12 @@ function login($username , $password) {
 		else {
             close_connection($conn);
 			 return $error_msg;
-				}
 		}
-		else {
-            close_connection($conn);
-            return $error_msg;
-		}
+	}
+	else {
+        close_connection($conn);
+        return $error_msg;
+	}
 }
 
 //This function takes the string username, email, password, and password2 input from the user after submitting register form
@@ -208,6 +210,7 @@ function searchItems($search){
     $result = $stmt->get_result();
     $stmt->close();
     close_connection($conn);
+    return $result;
     if (!$result) {
         return -1;
     }
@@ -215,6 +218,68 @@ function searchItems($search){
         return 0;
     }
     return $result;
+}
+
+//This function takes in parameters userID, which is the ID of the user whos cart we will retrieve
+// -1 return value indicates an error executing the procedure. 
+// Otherwise a 2d array, witch each row of the format [productID , productName,	amount, image, unitPrice, description] will be returned
+function getUserCart($userID){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL getShoppingCartByUserID(?)");
+    $stmt->bind_param("i", $userID);
+    // Execute the statement
+    $stmt->execute();
+    $result = $stmt->get_result();
+    // Handle the result
+    if (!$result) {
+        $stmt->close();
+        close_connection($conn);
+        return -1;
+    } else {
+        $stmt->close();
+        close_connection($conn);
+        return $result;
+    }
+}
+
+//This function takes in parameters userID, which is the ID of the user whos cart we will retrieve
+// -1 return value indicates an error executing the procedure. 1 indicates the cart was cleared
+function clearUserCart($userID){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL clearShoppingCart(?)");
+    $stmt->bind_param("i", $userID);
+    // Execute the statement
+    $stmt->execute();
+    // Handle the result
+    if ($stmt->errno) {
+        $stmt->close();
+        close_connection($conn);
+        return -1;
+    } else {
+        $stmt->close();
+        close_connection($conn);
+        return 1;
+    }
+}
+
+//This function takes in parameters $fromUserID representing the buyer, $toUserID representing the seller, $orderID, and $amount and $amount which represents the dollar amount of the purchased 
+// -1 return value indicates an error executing the procedure. 1 indicates the cart was cleared
+function addTransaction($fromUserID, $toUserID, $orderID, $amount){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL addTransation(?, ? , ? , ?)");
+    $stmt->bind_param("iiii", $fromUserID, $toUserID, $orderID , $amount);
+    // Execute the statement
+    $stmt->execute();
+    // Handle the result
+    if ($stmt->errno) {
+        $stmt->close();
+        close_connection($conn);
+        return -1;
+    } else {
+        $stmt->close();
+        close_connection($conn);
+        return 1;
+    }
 }
 
 // New added function by Jiajun on 4/11
@@ -233,26 +298,4 @@ function getProductByID($productID) {
         return 0;
     }
     return $result->fetch_assoc();
-}
-
-// New added function by Jiajun on 4/21
-function getCartItems($userID) {
-    $conn = establish_connection();
-
-    $sql = "SELECT c.product_id, p.product_name, p.product_image, p.price, c.amount
-            FROM shopping_cart c
-            INNER JOIN product p ON c.product_id = p.id
-            WHERE c.user_id = ?";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $userID);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    close_connection($conn);
-
-    if ($result->num_rows > 0) {
-        return $result;
-    } else {
-        return false;
-    }
 }
