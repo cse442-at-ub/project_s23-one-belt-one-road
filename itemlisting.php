@@ -8,16 +8,26 @@
     <header>
 		<?php require 'header.php'; ?>
 	</header>
+    
+    <div class="sort-container">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select">
+            <option value="price-asc">Price (Low to High)</option>
+            <option value="price-desc">Price (High to Low)</option>
+        </select>
+        <button id="sort-btn">Sort</button>
+    </div>
 
 	<?php
 	require_once 'database_APIs/apiFunctions.php';
 	if(isset($_GET['keywords'])){
 		$keywords = filter_var($_GET['keywords'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $sort = $_GET['sort'] ?? null;
 		$errors = [];
 
 		if(!empty($keywords)){
 			// fetch all items related to keyword
-			$result = searchItems($keywords);
+			$result = searchItems($keywords, $sort);
 			if ($result == -1) {
 				echo "Error: Executing the procedure fialed ";
 				exit;
@@ -38,7 +48,7 @@
 			
 		}else{
 			// if input is empty, fetch all items on sale
-			$result = getAllItems();
+			$result = getAllItems($sort);
 			if ($result == -1) {
 				echo "Error: Executing the procedure fialed ";
 				exit;
@@ -58,8 +68,18 @@
 			echo '</div>';
 		}
 	}
-	
-?>
+    ?>
+
+    <script>
+        const sortBtn = document.getElementById('sort-btn');
+        sortBtn.addEventListener('click', () => {
+            const sortSelect = document.getElementById('sort-select');
+            const sortValue = sortSelect.value;
+            const currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.set('sort', sortValue);
+            window.location.href = currentUrl.href;
+        });
+    </script>
 
 </body>
 </html>
