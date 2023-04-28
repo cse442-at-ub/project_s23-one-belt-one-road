@@ -73,15 +73,25 @@
             }
         
                 echo "\nClearing cart for user ID = 1\n";
-        echo " <div> Adding transaction from 3, to = 2, ammount = 8 , description = Desc , shipping = ship <div>";
-        $res = addTransaction(3 , 2 , 2 , "Desc" , 'Ship');
+        echo " <div> Adding transaction from 3, to = 2, ammount = 8 , description = [{'productID': 1, 'quantity': 2}] , shipping = ship <div>";
+        // $res = addTransaction(3 , 2 ,  '[{"productID": 1, "quantity": 2}]' , 'Ship test');
         if ($res == -1){
             echo "Error during api call";
         }
         else {
                 echo "Added transaction!";
             }
-        echo "FINISHED TESTING";
+        echo " <div> Retrieving transactions for user ID = 1 <div>";
+        $items = getTransactionBySellerID(1);
+        if ($items == -1){
+            echo "Error during api call";
+        }
+        else {
+            foreach ($items as $item) {
+                echo "ID: " . $item['id'] . " Buyer ID: " . $item['buyerID'] . " Seller ID: " . $item['sellerID'] . " Amount: " . $item['amount'] . " Datetime: " . $item['datetime'] . " Order ID: " . $item['orderID'];
+
+            }
+        }
 	?>
 </body>
 </html>
