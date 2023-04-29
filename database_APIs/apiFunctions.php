@@ -262,13 +262,15 @@ function clearUserCart($userID){
     }
 }
 
-//This function takes in integer parameters $fromUserID representing the buyer, $toUserID representing the seller, $amount which represents the dollar amount of the purchase
+//This function takes in integer parameters $buyerID representing the buyer, and $amount which represents the dollar amount of the purchase
 // This function takes in string parameters $description which represents the item description and $shipping which represents the shipping address of the buyer
 // -1 return value indicates an error executing the procedure. 1 indicates the transaction was added
-function addTransaction($fromUserID, $toUserID, $amount , $description, $shipping){
+// Foe one product, description must follow JSON format: description = [{'productID': 1, 'quantity': 2}] 
+// For multiple products, format is: [{"productID": 4, "quantity": 1}, {"productID": 5, "quantity": 3}]
+function addTransaction($buyerID, $amount, $description, $shipping){
     $conn = establish_connection();
-    $stmt = $conn->prepare("CALL addTransation(?, ? , ? , ? , ?)");
-    $stmt->bind_param("iiiss", $fromUserID, $toUserID, $amount , $description, $shipping);
+    $stmt = $conn->prepare("CALL add_order_transaction(?, ? , ? , ?)");
+    $stmt->bind_param("iiss", $buyerID, $amount, $description, $shipping);
     // Execute the statement
     $stmt->execute();
     // Handle the result
@@ -299,4 +301,21 @@ function getProductByID($productID) {
         return 0;
     }
     return $result->fetch_assoc();
+}
+
+//This function takes an integer parameter that represented the seller ID
+// return format (if succsuessful) will be N lists , with each list of the structure ['id' , 'buyerID' , 'sellerID' , 'amount' , 'datetime' , 'orderID' ]
+// Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
+function getTransactionBySellerID($userID) {
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL getTransactionBySellerID(?)");
+    $stmt->bind_param("i", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    close_connection($conn);
+    $stmt->close();
+    if (!$result) {
+        return -1;
+    }
+    return $result;
 }
