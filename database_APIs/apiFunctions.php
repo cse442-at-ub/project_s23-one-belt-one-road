@@ -220,6 +220,71 @@ function searchItems($search){
     return $result;
 }
 
+//This function takes in parameters userID, which is the ID of the user whos cart we will retrieve
+// -1 return value indicates an error executing the procedure. 
+// Otherwise a 2d array, witch each row of the format [productID , productName,	amount, image, unitPrice, description] will be returned
+function getUserCart($userID){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL getShoppingCartByUserID(?)");
+    $stmt->bind_param("i", $userID);
+    // Execute the statement
+    $stmt->execute();
+    $result = $stmt->get_result();
+    // Handle the result
+    if (!$result) {
+        $stmt->close();
+        close_connection($conn);
+        return -1;
+    } else {
+        $stmt->close();
+        close_connection($conn);
+        return $result;
+    }
+}
+
+//This function takes in parameters userID, which is the ID of the user whos cart we will retrieve
+// -1 return value indicates an error executing the procedure. 1 indicates the cart was cleared
+function clearUserCart($userID){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL clearShoppingCart(?)");
+    $stmt->bind_param("i", $userID);
+    // Execute the statement
+    $stmt->execute();
+    // Handle the result
+    if ($stmt->errno) {
+        $stmt->close();
+        close_connection($conn);
+        return -1;
+    } else {
+        $stmt->close();
+        close_connection($conn);
+        return 1;
+    }
+}
+
+//This function takes in integer parameters $buyerID representing the buyer, and $amount which represents the dollar amount of the purchase
+// This function takes in string parameters $description which represents the item description and $shipping which represents the shipping address of the buyer
+// -1 return value indicates an error executing the procedure. 1 indicates the transaction was added
+// Foe one product, description must follow JSON format: description = [{'productID': 1, 'quantity': 2}] 
+// For multiple products, format is: [{"productID": 4, "quantity": 1}, {"productID": 5, "quantity": 3}]
+function addTransaction($buyerID, $amount, $description, $shipping){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL add_order_transaction(?, ? , ? , ?)");
+    $stmt->bind_param("iiss", $buyerID, $amount, $description, $shipping);
+    // Execute the statement
+    $stmt->execute();
+    // Handle the result
+    if ($stmt->errno) {
+        $stmt->close();
+        close_connection($conn);
+        return -1;
+    } else {
+        $stmt->close();
+        close_connection($conn);
+        return 1;
+    }
+}
+
 // New added function by Jiajun on 4/11
 // This function takes the ID of the product you want to retrieve as a parameter
 // Executes a SQL query to retrieve the product data from the database
