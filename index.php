@@ -4,7 +4,7 @@
 	<title>Ubay</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 	<header>
@@ -15,7 +15,7 @@
 			<h1 style="font-style: italic; margin-bottom: 50px;">Trending</h1>
 			<div style="text-align: center;">
 				<?php
-					require_once 'apiFunctions.php';
+					require_once 'database_APIs/apiFunctions.php';
 					$result = getNItems(4);
 					if ($result == -1) {
 						echo "<p>Error: Failed to get 4 products data from API</p>";
@@ -35,7 +35,7 @@
 				?>
 			</div>
 			<p style="margin-top: 40px;">Get access to exclusive products from students.</p>
-			<a href="/itemlisting.php?keywords=" class="text-button" style="text-align: right;">See All</a>
+			<a href="<?php echo ($_SERVER['SERVER_NAME'] == 'localhost') ? '/itemlisting.php?keywords=' : '/CSE442-542/2023-Spring/cse-442j/itemlisting.php?keywords=' ?>" class="text-button" style="text-align: right;">See All</a>
 		</section>
 	</main>
 	<?php require 'footer.php'; ?>

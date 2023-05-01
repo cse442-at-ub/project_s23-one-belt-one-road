@@ -157,10 +157,10 @@ function getNItems($productCount){
     return $result;
 }
 
-//This function takes in parameters userID, productID, and ammount (the ammount of productID that should be removed)
-// -1 return value indicates an error executing the procedure. 1 indicates item was removed from cart
+//This function takes in parameters userID, productID. The entire quantity of the product will be removed from the cart
+// -1 return value indicates an error executing the procedure. 1 indicates item was removed from cart.
 //TODO: Edge cases (negative items), update to use amount (database procedure currently does not except an ammount parameter)
-function removeFromShoppingCart($userID, $productID, $amount){
+function removeFromShoppingCart($userID, $productID){
     $conn = establish_connection();
     $stmt = $conn->prepare("CALL removeFromShoppingCart(?, ?)");
     $stmt->bind_param("ii", $userID, $productID);
@@ -220,68 +220,6 @@ function searchItems($search){
     return $result;
 }
 
-//This function takes in parameters userID, which is the ID of the user whos cart we will retrieve
-// -1 return value indicates an error executing the procedure. 
-// Otherwise a 2d array, witch each row of the format [productID , productName,	amount, image, unitPrice, description] will be returned
-function getUserCart($userID){
-    $conn = establish_connection();
-    $stmt = $conn->prepare("CALL getShoppingCartByUserID(?)");
-    $stmt->bind_param("i", $userID);
-    // Execute the statement
-    $stmt->execute();
-    $result = $stmt->get_result();
-    // Handle the result
-    if (!$result) {
-        $stmt->close();
-        close_connection($conn);
-        return -1;
-    } else {
-        $stmt->close();
-        close_connection($conn);
-        return $result;
-    }
-}
-
-//This function takes in parameters userID, which is the ID of the user whos cart we will retrieve
-// -1 return value indicates an error executing the procedure. 1 indicates the cart was cleared
-function clearUserCart($userID){
-    $conn = establish_connection();
-    $stmt = $conn->prepare("CALL clearShoppingCart(?)");
-    $stmt->bind_param("i", $userID);
-    // Execute the statement
-    $stmt->execute();
-    // Handle the result
-    if ($stmt->errno) {
-        $stmt->close();
-        close_connection($conn);
-        return -1;
-    } else {
-        $stmt->close();
-        close_connection($conn);
-        return 1;
-    }
-}
-
-//This function takes in parameters $fromUserID representing the buyer, $toUserID representing the seller, $orderID, and $amount and $amount which represents the dollar amount of the purchased 
-// -1 return value indicates an error executing the procedure. 1 indicates the cart was cleared
-function addTransaction($fromUserID, $toUserID, $orderID, $amount){
-    $conn = establish_connection();
-    $stmt = $conn->prepare("CALL addTransation(?, ? , ? , ?)");
-    $stmt->bind_param("iiii", $fromUserID, $toUserID, $orderID , $amount);
-    // Execute the statement
-    $stmt->execute();
-    // Handle the result
-    if ($stmt->errno) {
-        $stmt->close();
-        close_connection($conn);
-        return -1;
-    } else {
-        $stmt->close();
-        close_connection($conn);
-        return 1;
-    }
-}
-
 // New added function by Jiajun on 4/11
 // This function takes the ID of the product you want to retrieve as a parameter
 // Executes a SQL query to retrieve the product data from the database
@@ -298,4 +236,21 @@ function getProductByID($productID) {
         return 0;
     }
     return $result->fetch_assoc();
+}
+
+//This function takes an integer parameter that represented the seller ID
+// return format (if succsuessful) will be N lists , with each list of the structure ['id' , 'buyerID' , 'sellerID' , 'amount' , 'datetime' , 'orderID' ]
+// Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
+function getTransactionBySellerID($userID) {
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL getTransactionBySellerID(?)");
+    $stmt->bind_param("i", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    close_connection($conn);
+    $stmt->close();
+    if (!$result) {
+        return -1;
+    }
+    return $result;
 }
