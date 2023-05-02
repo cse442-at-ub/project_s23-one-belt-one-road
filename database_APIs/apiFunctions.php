@@ -124,10 +124,18 @@ function register($username, $email, $password , $password2){
 //This function takes no parameters and will return all items in the the database
 // return format (if succsuessful) will be a list of lists, with each list of the structure ['id' , 'product_name', 'owner_id', 'unit_price', 'inventory', 'description' , 'image' ]
 // Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
-function getAllItems(){
+function getAllItems($sort = null){
     $conn = establish_connection();
     // Call the stored procedure
-    $query = "CALL getAllProduct()";
+    $query = "SELECT * FROM product";
+
+    // Add sorting to query if a sort option is provided
+    if ($sort === 'price-asc') {
+        $query .= " ORDER BY unit_price ASC";
+    } elseif ($sort === 'price-desc') {
+        $query .= " ORDER BY unit_price DESC";
+    }
+
     $result = mysqli_query($conn, $query);
     close_connection($conn);
     if (!$result) {
@@ -202,15 +210,22 @@ function addToShoppingCart($userID, $productID, $amount){
 //This function takes an string parameter, which is the search phrase input from the user
 // return format (if succsuessful) will be N lists , with each list of the structure ['id' , 'product_name', 'owner_id', 'unit_price', 'inventory', 'description' , 'image' ]
 // Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure. Or flag value of 0 will be returned -> indicating no results were found in database
-function searchItems($search){
+function searchItems($search, $sort = null){
     $conn = establish_connection();
     $stmt = $conn->prepare("SELECT * FROM product p WHERE p.product_name LIKE CONCAT('%',?,'%')");
+
+    // Add sorting to query if a sort option is provided
+    if ($sort === 'price-asc') {
+        $stmt = $conn->prepare("SELECT * FROM product p WHERE p.product_name LIKE CONCAT('%',?,'%') ORDER BY p.unit_price ASC");
+    } elseif ($sort === 'price-desc') {
+        $stmt = $conn->prepare("SELECT * FROM product p WHERE p.product_name LIKE CONCAT('%',?,'%') ORDER BY p.unit_price DESC");
+    }
+
     $stmt->bind_param("s", $search);
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();
     close_connection($conn);
-    return $result;
     if (!$result) {
         return -1;
     }
