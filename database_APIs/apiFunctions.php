@@ -350,3 +350,22 @@ function getOrderByOrderID($orderID) {
     }
     return $result;
 }
+
+//This function takes in a parameter sellerID
+// -1 return value indicates an error executing the procedure. 
+// Otherwise a 2d array, witch each row of the format [productID , productName,	amount, image, unitPrice, description] will be returned, which are all the items the seller has listed for sale
+function getListedItems($sellerID){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL getProductByUserID(?)");
+    $stmt->bind_param("i", $sellerID);
+    // Execute the statement
+    $stmt->execute();
+    // Get the result 
+    $result = $stmt->get_result();
+    close_connection($conn);
+    $stmt->close();
+    if (!$result) {
+        return -1;
+    }
+    return $result;
+}
