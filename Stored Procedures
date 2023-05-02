@@ -32,6 +32,8 @@ Order
 
 3. `getOrderByID`(IN `orderID` INT)
 
+4. `getOrderByUserID`(IN `userID` INT)
+
 
 Shopping Cart
 
