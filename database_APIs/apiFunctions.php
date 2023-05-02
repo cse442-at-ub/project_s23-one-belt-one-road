@@ -319,3 +319,74 @@ function getTransactionBySellerID($userID) {
     }
     return $result;
 }
+
+//This function takes an integer parameter that representes the buyer ID
+// return format (if succsuessful) will be N lists , with each list of the structure ['id' , 'shipping' , 'amount' , 'description', 'datetime', 'buyerID']
+// Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
+function getOrderByUserID($userID) {
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL getOrderByUserID(?)");
+    $stmt->bind_param("i", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    close_connection($conn);
+    $stmt->close();
+    if (!$result) {
+        return -1;
+    }
+    return $result;
+}
+
+//This function takes an integer parameter that represented the order ID
+// return format (if succsuessful) will be N lists , with each list of the structure ['id' , 'shipping' , 'amount' , 'description', 'datetime', 'buyerID']
+// Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
+function getOrderByOrderID($orderID) {
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL getOrderByID(?)");
+    $stmt->bind_param("i", $orderID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    close_connection($conn);
+    $stmt->close();
+    if (!$result) {
+        return -1;
+    }
+    return $result;
+}
+
+//This function takes in a parameter sellerID
+// -1 return value indicates an error executing the procedure. 
+// Otherwise a 2d array, witch each row of the format [productID , productName,	amount, image, unitPrice, description] will be returned, which are all the items the seller has listed for sale
+function getListedItems($sellerID){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL getProductByUserID(?)");
+    $stmt->bind_param("i", $sellerID);
+    // Execute the statement
+    $stmt->execute();
+    // Get the result 
+    $result = $stmt->get_result();
+    close_connection($conn);
+    $stmt->close();
+    if (!$result) {
+        return -1;
+    }
+    return $result;
+}
+
+//This function takes no parameters
+// return format (if succsuessful) will be N lists , with each list of the structure ['id' , 'shipping' , 'amount' , 'description', 'datetime', 'buyerID']
+// Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
+function getAllOrders(){
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL getAllOrders()");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    close_connection($conn);
+    if (!$result) {
+        return -1;
+    }
+    return $result;
+}
+
+
