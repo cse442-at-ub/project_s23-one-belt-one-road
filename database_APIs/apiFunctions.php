@@ -317,13 +317,30 @@ function getTransactionBySellerID($userID) {
     return $result;
 }
 
-//This function takes an integer parameter that represented the seller ID
+//This function takes an integer parameter that representes the buyer ID
 // return format (if succsuessful) will be N lists , with each list of the structure ['id' , 'shipping' , 'amount' , 'description', 'datetime', 'buyerID']
 // Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
 function getOrderByUserID($userID) {
     $conn = establish_connection();
     $stmt = $conn->prepare("CALL getOrderByUserID(?)");
     $stmt->bind_param("i", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    close_connection($conn);
+    $stmt->close();
+    if (!$result) {
+        return -1;
+    }
+    return $result;
+}
+
+//This function takes an integer parameter that represented the order ID
+// return format (if succsuessful) will be N lists , with each list of the structure ['id' , 'shipping' , 'amount' , 'description', 'datetime', 'buyerID']
+// Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
+function getOrderByOrderID($orderID) {
+    $conn = establish_connection();
+    $stmt = $conn->prepare("CALL getOrderByID(?)");
+    $stmt->bind_param("i", $orderID);
     $stmt->execute();
     $result = $stmt->get_result();
     close_connection($conn);
