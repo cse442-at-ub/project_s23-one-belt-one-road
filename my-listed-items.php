@@ -19,42 +19,51 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 			<div id="cartItems" class="item-blocks-long">
 				<?php
 					require_once 'database_APIs/apiFunctions.php';
+
+                    if (!isset($_GET['ownerID']) || empty($_GET['ownerID'])) {
+                        echo "<p>No Seller ID specified.</p>";
+                        exit;
+                    }
+
+                    $ownerID = $_GET['ownerID'];
+			        $listed_result = getListedItemsBySellerID($ownerID);
+
 					$cart_result = getUserCart($user_id);
-					if ($cart_result == -1) {
+					if ($listed_result == -1) {
 						echo "<p>Error: Failed to get listed items data from API</p>";
 	    				exit;
 					}
 					$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/images/';
 					
-					if ($cart_result->num_rows == 0) {
+					if ($listed_result->num_rows == 0) {
 				        echo '<p style="margin-block: 100px;">No listed item. Start listing your product now!</p>';
 				    } else {
-						while ($cart_row = $cart_result->fetch_assoc()) {
-							$image_path = $image_location . $cart_row['image'];
-							$product_path = 'product_detail.php?productID=' . $cart_row['productID'];
+						while ($listed_row = $listed_result->fetch_assoc()) {
+							$image_path = $image_location . $listed_row['image'];
+							$product_path = 'product_detail.php?productID=' . $listed_row['productID'];
 							echo '<div id="cartItem" class="item-block-long">';
 
 								echo '<div class="item-block-long-info">';
 									echo '<a href="' . $product_path . '" class="centered-link"><img src="' . $image_path . '" alt="item" class="item-block-long-image">' . $cart_row['productName'] . '</a>';
-									echo '<span class="item-price" type="number">$ ' . $cart_row['unitPrice'] . '</span>';
+									echo '<span class="item-price" type="number">$ ' . $listed_row['unitPrice'] . '</span>';
 								echo '</div>';
 
-								echo '<input id="cartItem-amount-' . $cart_row['productID'] . '" type="number" class="item-amount" value="' . $cart_row['amount'] . '">';
+								echo '<input id="cartItem-amount-' . $listed_row['productID'] . '" type="number" class="item-amount" value="' . $cart_row['amount'] . '">';
 									echo '<script>
-										document.getElementById("cartItem-amount-' . $cart_row['productID'] . '").addEventListener("change", function() {
+										document.getElementById("cartItem-amount-' . $listed_row['productID'] . '").addEventListener("change", function() {
 											calculateTotal()
 											.then(() => {
 												var userID = "' . $user_id . '";
-											    var productId = "' . $cart_row['productID'] . '";
-											    var amountChange = this.value - ' . $cart_row['amount'] . ';
+											    var productId = "' . $listed_row['productID'] . '";
+											    var amountChange = this.value - ' . $listed_row['amount'] . ';
 											    updateCart(userID, productId, amountChange)
 											    .then(() => location.reload(true))
 					        					.catch(error => console.error(error.message));
 											});
 										});
 									</script>';
-								echo '<span class="item-subtotal">Subtotal $ '. $cart_row['amount'] * $cart_row['unitPrice'] . '</span>';
-								echo '<button class="cart-remove-button" data-product-id="' . $cart_row['productID'] . '">REMOVE</button>';
+								echo '<span class="item-subtotal">Subtotal $ '. $listed_row['amount'] * $listed_row['unitPrice'] . '</span>';
+								echo '<button class="cart-remove-button" data-product-id="' . $listed_row['productID'] . '">REMOVE</button>';
 							echo '</div>';
 						}
 					}

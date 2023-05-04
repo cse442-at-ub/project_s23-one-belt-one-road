@@ -304,7 +304,7 @@ function getProductByID($productID) {
 }
 
 // New added function by Jiajun on 5/3
-function getListedItemsBySeller($ownerID) {
+function getListedItemsBySellerID($ownerID) {
     $conn = establish_connection();
     $query = "SELECT * FROM product WHERE owner_id=$ownerID";
     $result = mysqli_query($conn, $query);

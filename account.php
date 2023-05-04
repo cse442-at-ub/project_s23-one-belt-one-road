@@ -45,8 +45,19 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : 'oops, no email return
 
 						<div class="mode-block" style="margin-top: 50px;">
 							<h2>For Seller</h2>
-							<a href="sale_orders.php"><button class="blue-button-large">Sale Order</button></a>
-							<a href="my-listed-items.php"><button class="blue-button-large">Listed Items</button></a>
+							<?php
+								require_once 'database_APIs/apiFunctions.php';
+								$result = getSellerID(); // TODO: incomplete API
+
+								if ($result == -1) {
+									echo "<p>Error: Failed to get Seller ID from API</p>";
+									exit;
+								}
+
+								$owner_path = 'my-listed-items.php?ownerID=' . $result;
+								echo '<a href="sale_orders.php"><button class="blue-button-large">Sale Order</button></a>';
+								echo '<a href="' . $owner_path . '"><button class="blue-button-large">Listed Items</button></a>';
+							?>
 						</div>
 					</div>
 				</div>
