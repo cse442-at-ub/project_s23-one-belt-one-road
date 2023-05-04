@@ -303,6 +303,20 @@ function getProductByID($productID) {
     return $result->fetch_assoc();
 }
 
+// New added function by Jiajun on 5/3
+function getListedItemsBySeller($ownerID) {
+    $conn = establish_connection();
+    $query = "SELECT * FROM product WHERE owner_id=$ownerID";
+    $result = mysqli_query($conn, $query);
+    close_connection($conn);
+    if (!$result) {
+        return -1;
+    } elseif(mysqli_num_rows($result) == 0){
+        return 0;
+    }
+    return $result->fetch_assoc();
+}
+
 //This function takes an integer parameter that represented the seller ID
 // return format (if succsuessful) will be N lists , with each list of the structure ['id' , 'buyerID' , 'sellerID' , 'amount' , 'datetime' , 'orderID' ]
 // Otherwise, flag value of -1 will be returned -> indicating an error executing the procedure
