@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $itemQuantity = $_POST['item-quantity'];
   $file = "uploads/" .$_POST["file_key"];
   $erros = [];
-  if ($file == "Invalid"){
+  if ($file == "uploads/Invalid"){
     $errors[] = "Error: You must upload an image";
   }
   else {
