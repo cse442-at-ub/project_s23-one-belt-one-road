@@ -144,7 +144,7 @@
 						$unitPrice = $row['unitPrice'];
 						$total_cost = $amount * $unitPrice;
 						$total_amount += $total_cost;
-						echo '<p>' . $productName. '  *  '. $amount. ':   $'. $total_amount . '</p>';
+						echo '<p>' . $productName. '  *  '. $amount. ':   $'. $total_cost . '</p>';
 					}
 					echo '<h3>Order Total: $' . $total_amount . '</h3>';
 				}
