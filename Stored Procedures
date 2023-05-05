@@ -32,6 +32,8 @@ Order
 
 3. `getOrderByID`(IN `orderID` INT)
 
+4. `getOrderByUserID`(IN `userID` INT)
+
 
 Shopping Cart
 
@@ -45,4 +47,7 @@ Shopping Cart
 
 Transaction
 
-1. `addTransation`(IN `from_user` INT, IN `to_user` INT, IN `orderID` INT, IN `amount` INT)
+1. `add_order_transaction`(IN `buyerID` INT, IN `amount` FLOAT, IN `description` VARCHAR(255), IN `shipping` VARCHAR(255))
+
+2. `getTransactionBySellerID`(IN `userID` INT)
+
