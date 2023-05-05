@@ -47,6 +47,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : 'oops, no email return
 							<h2>For Seller</h2>
 							<a href="sale_orders.php"><button class="blue-button-large">Sale Orders</button></a>
 							<a href="my-listed-items.php"><button class="blue-button-large">Listed Items</button></a>
+
 						</div>
 					</div>
 				</div>
