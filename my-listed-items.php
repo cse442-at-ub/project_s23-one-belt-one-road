@@ -36,7 +36,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 
 								echo '<div class="item-block-long-info">';
 									echo '<a href="' . $product_path . '" class="centered-link"><img src="' . $image_path . '" alt="item" class="item-block-long-image">' . $listed_row['product_name'] . '</a>';
-									echo '<span class="item-price" type="number">          $ ' . $listed_row['unit_price'] . '</span>';
+									echo '<span class="item-price" type="number">$ ' . $listed_row['unit_price'] . '</span>';
 								echo '</div>';
 
 								echo '<span class="item-price" type="number">Inventory:  ' . $listed_row['inventory'] . '</span>';
@@ -44,6 +44,37 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 						}
 					}
 				?>
+				
+				<!-- <script>
+				// Update an item inventory
+				function updateInventory(userID, productID, amountChange) {
+					return new Promise(function(resolve, reject) {
+						console.log("Passing parameters to XML", userID, productID, amountChange);
+						var xhr = new XMLHttpRequest();
+						xhr.onreadystatechange = function() {
+							if (this.readyState == 4) {
+								if (this.status == 200) {
+									// Handle the response from the server
+									var response = JSON.parse(this.responseText);
+									console.log(response);
+									if (response.success) {
+										resolve(response.message);
+									} else {
+										reject(new Error(response.message));
+									}
+								}
+								else {
+									console.log(this.readyState, this.status);
+									reject(new Error("Failed to update item amount from cart"));
+								}
+							}
+						}
+						xhr.open("GET", "updateCart.php?userID=" + userID + "&productID=" + productID + "&amountChange=" + amountChange, true);
+						xhr.send();
+					});
+				}
+				</script> -->
+				
 			</div>
 		</section>
 	</main>
