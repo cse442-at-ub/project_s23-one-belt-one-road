@@ -21,7 +21,7 @@
 						echo "<p>Error: Failed to get 4 products data from API</p>";
 	    				exit;
 					}
-					$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/images/';
+					$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/' : '/CSE442-542/2023-Spring/cse-442j/';
 					echo '<ul class="landing-item-list">';
 					while ($row = $result->fetch_assoc()) {
 						$image_path = $image_location . $row['image'];

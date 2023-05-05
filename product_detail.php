@@ -29,7 +29,7 @@
 				exit;
 			}
 
-			$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/';
+			$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/' : '/CSE442-542/2023-Spring/cse-442j/';
 			$image_path = $image_location . $product['image'];
 		?>
 		<div class="product-image-block-tall">
