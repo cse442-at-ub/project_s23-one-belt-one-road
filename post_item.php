@@ -12,6 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if ($file == "uploads/Invalid"){
     $errors[] = "Error: You must upload an image";
   }
+  elseif($sellerID == -1){
+    $errors[] = "Error: You must log in";
+  }
   else {
   $conn = establish_connection();
   $sql = "INSERT INTO product (product_name, owner_id, unit_price, inventory, description, image) 
