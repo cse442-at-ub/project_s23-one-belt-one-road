@@ -50,3 +50,4 @@ Transaction
 1. `add_order_transaction`(IN `buyerID` INT, IN `amount` FLOAT, IN `description` VARCHAR(255), IN `shipping` VARCHAR(255))
 
 2. `getTransactionBySellerID`(IN `userID` INT)
+

@@ -2,40 +2,53 @@
 <html>
 <head>
 	<title>Confirmation Page</title>
-	<link rel="stylesheet" type="text/css" href="payment-confirm.css">
+	<link rel="stylesheet" type="text/css" href="CSS/payment-confirm.css">
 </head>
 <body>
 	<header>
 		<?php require 'header.php'; ?>
 	</header>
-    <main>
-		<section id="left">
-            <h1>Thank you for your order!</h1>
-            <h1>Order Number: #2023CSE442</h1>
-			<h2>Shipping Address</h2>
-			<p><label style="white-space: nowrap;">University at Buffalo</label></p>
-            <p><label>Buffalo, 14261</label></p>
+	<div style="text-align: center;">
+			<h1>Thank you for your order!</h1>
+			<h2>Shipping Address:</h2>
+			<?php
+				require_once 'database_APIs/apiFunctions.php';
+				$shipping = $_SESSION["shipping"];
+				echo '<p><label style="white-space: nowrap;">' . $shipping . '</label></p>';
 
-            <h2>Payment Information</h2>
-			<p><label style="white-space: nowrap;">Card ending in 1234</label></p>
-            <p><label>Expire on 2023/12</label></p>
+				$userID = $_SESSION['user_id'];
+				$cart_result = getUserCart($userID);
+				$total_amount = 0;
+				$description = array();
 
-            <h2>Order Summary</h2>
-            <p>Items: $0.0</p>
-            <p>Shipping: $0.0</p>
-            <p>Total before tax: $0.0</p>
-            <p>Tax: $0.0</p>
-            <h3>Order Total: $0.0</h3>
-		</section>
+				if ($cart_result == -1) {
+					echo "<p>Error: Failed to get shopping data from API</p>";
+					exit;
+				} else {
+					while ($row = mysqli_fetch_assoc($cart_result)) {
+						$productID = $row['productID'];
+						$amount = $row['amount'];
+						$unitPrice = $row['unitPrice'];
+						$total_cost = $amount * $unitPrice;
+						$total_amount += $total_cost;
 
-		<section id="center">
+						// Add product to the transaction description
+						$description[] = array(
+							"productID" => $productID,
+							"quantity" => $amount
+						);
+					}
+				}
+				echo '<h3>Total Amount: $' . $total_amount . '</h3>';
+
+				$result = addTransaction($userID, $total_amount, json_encode($description), $shipping);
+
+				$clear = clearUserCart($userID);
+
+			?>
 			
-		</section>
+			</div>
 
-		<section id="right">
-			
-		</section>
-</main>
 		
 </body>
 </html>
