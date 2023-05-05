@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         VALUES ('$itemName', '$sellerID', $itemPrice, $itemQuantity, '$itemDesc', '$file')";
 
     if ($conn->query($sql) === TRUE) {
-      header("Location: account.php");
+      header("Location: my-listed-items.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<form method = "post" enctype="multipart/form-data" action="post_item.php">
                     <div class="input-container">
                     <label for="item-name-input">Item Name:</label>
-                    <input type="text" id="item-name-input" name="item-name" required maxlength="100" minlength = "4">
+                    <input type="text" id="item-name-input" name="item-name" required maxlength="35" minlength = "4">
                     </div>
 
                     <div class="input-container">
