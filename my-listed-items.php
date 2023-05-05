@@ -36,7 +36,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 
 								echo '<div class="item-block-long-info">';
 									echo '<a href="' . $product_path . '" class="centered-link"><img src="' . $image_path . '" alt="item" class="item-block-long-image">' . $listed_row['product_name'] . '</a>';
-									echo '<span class="item-price" type="number">$ ' . $listed_row['unit_price'] . '</span>';
+									echo '<span class="item-price" type="number">          $ ' . $listed_row['unit_price'] . '</span>';
 								echo '</div>';
 
 								echo '<span class="item-price" type="number">Inventory:  ' . $listed_row['inventory'] . '</span>';
