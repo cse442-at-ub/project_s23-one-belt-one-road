@@ -28,14 +28,13 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
                     $ownerID = $_GET['ownerID'];
 			        $listed_result = getListedItemsBySellerID($ownerID);
 
-					$cart_result = getUserCart($user_id);
 					if ($listed_result == -1) {
 						echo "<p>Error: Failed to get listed items data from API</p>";
 	    				exit;
 					}
 					$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/images/';
 					
-					if ($listed_result->num_rows == 0) {
+					if ($listed_result == 0) {
 				        echo '<p style="margin-block: 100px;">No listed item. Start listing your product now!</p>';
 				    } else {
 						while ($listed_row = $listed_result->fetch_assoc()) {
