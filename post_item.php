@@ -40,6 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="CSS/style.css">
 	<style>
+
+    #post-item-page {
+      width: 800px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+    }
 .add-image {
   width: 300px;
   height: 300px;
@@ -71,20 +79,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 .input-form {
-  overflow: hidden;
+  width: auto;
+/*  overflow: hidden;*/
 }
 
 .input-form form {
-  width: calc(100% - 320px);
+  width: auto;
   float: left;
   margin-top: 50px;
   color: #007bff;
 }
 
+.input-container {
+  margin-block: 10px;
+}
+
 .input-form label {
   display: inline-table;
   margin-bottom: 5px;
-  font-weight: 1000;
+  font-size: 20px;
+  font-weight: 550;
+  color: #006ED3;
 }
 
 .input-form input[type="text"],
@@ -92,26 +107,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 .input-form textarea {
   width: 100%;
   padding: 10px;
+  margin-top: 2px;
   margin-bottom: 10px;
   border: 3px solid #ccc;
-  border-radius: 10px;
+/*  border-radius: 10px;*/
   font-size: 100%;
-  
+  height: 25px;
 }
 
 
 .input-form button[type="submit"] {
-  background-color: #007bff;
+  background-color: #006ED3;
   color: #fff;
-  padding: 20px 40px;
+  padding: 10px 50px;
   border: none;
-  border-radius: 50px;
+/*  border-radius: 50px;*/
   cursor: pointer;
   font-size: 24px;
+  font-weight: 550;
+  margin-top: 15px;
+  margin-left: 5px;
 }
 
 .input-form button[type="submit"]:hover {
-  background-color: #0069d9;
+  text-decoration: underline;
 }
 
 </style>
@@ -121,40 +140,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<?php require 'header.php'; ?>
 	</header>
 	<main>
-  <h2 class="item-details-heading">Enter item details:</h2>
-    <div class="add-image" id="add-image">
-			<span>Click to add image</span>
-			<input type="file" id="file-upload" style="display: none;">
-      <!-- <button type="submit">Upload</button> -->
-		</div>
-        <div class="input-form" id="input-form">
+    <h2 class="item-details-heading">Enter item details:</h2>
+    <div id="post-item-page">
+      <div class="add-image" id="add-image">
+  			<span>Click to add image</span>
+  			<input type="file" id="file-upload" style="display: none;">
+        <!-- <button type="submit">Upload</button> -->
+  		</div>
+      <div class="input-form" id="input-form">
 
-				<form method = "post" enctype="multipart/form-data" action="post_item.php">
-                    <div class="input-container">
-                    <label for="item-name-input">Item Name:</label>
-                    <input type="text" id="item-name-input" name="item-name" required maxlength="35" minlength = "4">
-                    </div>
+			  <form method = "post" enctype="multipart/form-data" action="post_item.php">
+                  <div class="input-container">
+                  <label for="item-name-input">Item Name:</label>
+                  <input type="text" id="item-name-input" name="item-name" required maxlength="35" minlength = "4">
+                  </div>
 
-                    <div class="input-container">
-                    <label for="item-price-input">Price (Per Unit):</label>
-                    <input type="number" id="item-price-input" name="item-price" min=".01" step="0.01" required max="10000000">
-                    </div>
+                  <div class="input-container">
+                  <label for="item-price-input">Price (Per Unit):</label>
+                  <input type="number" id="item-price-input" name="item-price" min=".01" step="0.01" required max="10000000">
+                  </div>
 
-                    <div class="input-container">
-                    <label for="item-desc-input">Description:</label>
-                    <input type="text" id="item-desc-input" name="item-desc" required maxlength="2000" minlength = "10">
-                    </div>
+                  <div class="input-container">
+                  <label for="item-desc-input">Description:</label>
+                  <input type="text" id="item-desc-input" name="item-desc" required maxlength="2000" minlength = "10">
+                  </div>
 
-                    <div class="input-container">
-                    <label for="item-quantity-input">Quantity:</label>
-                    <input type="number" id="item-quantity-input" name="item-quantity" min="1" max="10000" required>
-                    </div>
+                  <div class="input-container">
+                  <label for="item-quantity-input">Quantity:</label>
+                  <input type="number" id="item-quantity-input" name="item-quantity" min="1" max="10000" required>
+                  </div>
 
-                    <input type="hidden" name="file_key" value="Invalid">
+                  <input type="hidden" name="file_key" value="Invalid">
 
-					          <button type="submit">Post</button>
-				</form>
-		</div>
+				          <button type="submit">POST</button>
+			  </form>
+		  </div>
+    </div>
 	</main>
 	<?php require 'footer.php'; ?>
 	<script>
