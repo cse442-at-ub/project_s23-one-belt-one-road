@@ -285,7 +285,7 @@ function clearUserCart($userID){
 function addTransaction($buyerID, $amount, $description, $shipping){
     $conn = establish_connection();
     $stmt = $conn->prepare("CALL add_order_transaction(?, ? , ? , ?)");
-    $stmt->bind_param("iiss", $buyerID, $amount, $description, $shipping);
+    $stmt->bind_param("ifss", $buyerID, $amount, $description, $shipping);
     // Execute the statement
     $stmt->execute();
     // Handle the result
