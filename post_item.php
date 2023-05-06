@@ -1,6 +1,9 @@
 <?php
 require_once "database_APIs/apiFunctions.php";
 session_start();
+if (!isset($_SESSION['username'])) {
+  header('Location: login.php');
+}
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $sellerID = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
   $itemName = filter_input(INPUT_POST, 'item-name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
