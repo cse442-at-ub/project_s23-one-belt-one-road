@@ -3,11 +3,11 @@ require_once "database_APIs/apiFunctions.php";
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $sellerID = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
-  $itemName = $_POST['item-name'];
-  $itemPrice = $_POST['item-price'];
-  $itemDesc = $_POST['item-desc'];
-  $itemQuantity = $_POST['item-quantity'];
-  $file = "uploads/" .$_POST["file_key"];
+  $itemName = filter_input(INPUT_POST, 'item-name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+  $itemPrice = filter_input(INPUT_POST, 'item-price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+  $itemDesc = filter_input(INPUT_POST, 'item-desc',  FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+  $itemQuantity = filter_input(INPUT_POST, 'item-quantity', FILTER_SANITIZE_NUMBER_INT);
+  $file = "uploads/" . filter_input(INPUT_POST, "file_key", FILTER_SANITIZE_ENCODED);
   $erros = [];
   if ($file == "uploads/Invalid"){
     $errors[] = "Error: You must upload an image";
