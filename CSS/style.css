@@ -214,6 +214,7 @@ input[type="number"] {
 }
 
 .item-price {
+    white-space: nowrap;
     color: #006ED3;
     display: inline-block;
     font-size: 24px;
