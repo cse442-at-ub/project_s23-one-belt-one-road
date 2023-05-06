@@ -40,12 +40,14 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : 'oops, no email return
 
 						<div class="mode-block" style="margin-bottom: 50px;">
 							<h2>For Buyer</h2>
-							<a href="purchase_orders.php"><button class="blue-button-large">Purchase Order</button></a>
+							<a href="purchase_orders.php"><button class="blue-button-large">Purchase Orders</button></a>
 						</div>
 
 						<div class="mode-block" style="margin-top: 50px;">
 							<h2>For Seller</h2>
-							<a href="sale_orders.php"><button class="blue-button-large">Sale Order</button></a>
+							<a href="sale_orders.php"><button class="blue-button-large">Sale Orders</button></a>
+							<a href="my-listed-items.php"><button class="blue-button-large">Listed Items</button></a>
+
 						</div>
 					</div>
 				</div>

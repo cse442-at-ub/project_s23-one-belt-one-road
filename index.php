@@ -21,7 +21,7 @@
 						echo "<p>Error: Failed to get 4 products data from API</p>";
 	    				exit;
 					}
-					$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/';
+					$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/' : '/CSE442-542/2023-Spring/cse-442j/';
 					echo '<ul class="landing-item-list">';
 					while ($row = $result->fetch_assoc()) {
 						$image_path = $image_location . $row['image'];
@@ -33,6 +33,7 @@
 					}
 					echo '</ul>';
 				?>
+
 			</div>
 			<p style="margin-top: 40px;">Get access to exclusive products from students.</p>
 			<a href="<?php echo ($_SERVER['SERVER_NAME'] == 'localhost') ? '/itemlisting.php?keywords=' : '/CSE442-542/2023-Spring/cse-442j/itemlisting.php?keywords=' ?>" class="text-button" style="text-align: right;">See All</a>
