@@ -40,7 +40,7 @@
 				$product_path = 'product_detail.php?productID=' . $attr['id'];
 				echo '<div class="item">';
 				echo '<a href="' . $product_path . '"><img src="' . $image_path . '" alt="item"></a>';
-				echo '<h3 class="item-name>' . $attr['product_name'] . '</h3>';
+				echo '<h3 class="item-name">' . $attr['product_name'] . '</h3>';
 				echo '<h3 class="item-price">$ ' . $attr['unit_price'] . '</h3>';
 				echo '</div>';
 			}
