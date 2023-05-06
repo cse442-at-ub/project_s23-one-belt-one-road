@@ -32,7 +32,7 @@
 				echo "Error: Executing the procedure fialed ";
 				exit;
 			}
-			$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/images/';
+			$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/';
 			echo '<h1 style="color: #006ED3;">' . $keywords . '</h1>';
 			echo '<div class="item-container">';
 			while ($attr = $result->fetch_assoc()) {
@@ -53,7 +53,7 @@
 				echo "Error: Executing the procedure fialed ";
 				exit;
 			}
-			$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/images/';
+			$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/';
 			echo '<h1 style="color: #006ED3;">All Items</h1>';
 			echo '<div class="item-container">';
 			while ($attr = $result->fetch_assoc()) {
