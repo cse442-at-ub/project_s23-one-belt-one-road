@@ -58,16 +58,13 @@
 					<td class="price">$<?php echo number_format($product['unit_price'], 2) ?></td>
 				</tr>
 			</table>
-			<?php
-				if ($product['inventory'] > 0) {
-					echo '<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?productID=" . $productID; ?>">
-					';
-					echo '<input type="submit" name="add_to_cart" value="Add to Cart">';
-					echo '</form>';
-				} else {
-					echo '<button class="blue-button-medium">Out of Stock</button>';
-				}
-			?>
+			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?productID=" . $productID; ?>">
+				<?php if ($product['inventory'] > 0): ?>
+            		<input type="submit" name="add_to_cart" value="Add to Cart" class="blue-button-medium" id="add-cart-button">
+				<?php else: ?>
+					<input type="button" value="Out of Stock" class="blue-button-medium" disabled>
+				<?php endif; ?>
+			</form>
 		</div>
 	</div>
 	<?php
