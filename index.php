@@ -33,6 +33,7 @@
 					}
 					echo '</ul>';
 				?>
+
 			</div>
 			<p style="margin-top: 40px;">Get access to exclusive products from students.</p>
 			<a href="<?php echo ($_SERVER['SERVER_NAME'] == 'localhost') ? '/itemlisting.php?keywords=' : '/CSE442-542/2023-Spring/cse-442j/itemlisting.php?keywords=' ?>" class="text-button" style="text-align: right;">See All</a>

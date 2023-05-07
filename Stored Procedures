@@ -11,7 +11,7 @@ User
 
 Product
 
-1. `createProduct`(IN `productName` VARCHAR(20), IN `ownerID` INT, IN `description` VARCHAR(200), IN `unitPrice` INT, IN `inventory` INT)
+1. `createProduct`(IN `productName` VARCHAR(20), IN `ownerID` INT, IN `description` VARCHAR(200), IN `unitPrice` FLOAT, IN `inventory` INT, IN `image` VARCHAR(50))
 
 2. `getAllProduct`()
 

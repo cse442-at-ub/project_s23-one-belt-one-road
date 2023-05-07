@@ -4,11 +4,10 @@
 	<meta charset="UTF-8">
 	<title>Product Detail</title>
 	<link rel="stylesheet" href="CSS/style.css">
-	<script src="script.js"></script>
 	<?php require('header.php'); ?>
 </head>
 <body>
-	<div id="content">
+	<div id="product-page-container">
 		<?php
 			require_once 'database_APIs/apiFunctions.php';
 			if (!isset($_GET['productID']) || empty($_GET['productID'])) {
@@ -36,7 +35,7 @@
 			<img src="<?php echo $image_path ?>" alt="Product Image">
 		</div>
 		<div class="product-details">
-			<h2><?php echo $product['product_name'] ?></h2>
+			<h1><?php echo $product['product_name'] ?></h1>
 			<table>
 				<tr>
 					<td>Description:</td>
@@ -56,7 +55,6 @@
 					<td>4.42/5</td>
 				</tr>
 				<tr id="price-row">
-					<td>Price:</td>
 					<td class="price">$<?php echo number_format($product['unit_price'], 2) ?></td>
 				</tr>
 			</table>
