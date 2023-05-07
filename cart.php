@@ -24,8 +24,8 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 						echo "<p>Error: Failed to get shopping data from API</p>";
 	    				exit;
 					}
+
 					$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/' : '/CSE442-542/2023-Spring/cse-442j/';
-					
 					if ($cart_result->num_rows == 0) {
 				        echo '<p style="margin-block: 100px;">Your cart is empty. Add something you like!</p>';
 				    } else {

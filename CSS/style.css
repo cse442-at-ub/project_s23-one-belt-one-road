@@ -54,6 +54,14 @@ button {
     outline: 3px solid #006ED3;
 }
 
+#header-sell-button {
+    background-color: #006ED3;
+    color: white;
+    padding-inline: 10px;
+    padding-block: 3px;
+    margin-left: 20px;
+}
+
 .item-image-button {
     object-fit: cover;
     width: 300px;
@@ -206,6 +214,7 @@ input[type="number"] {
 }
 
 .item-price {
+    white-space: nowrap;
     color: #006ED3;
     display: inline-block;
     font-size: 24px;
@@ -283,8 +292,9 @@ input[type="number"] {
     margin: 0px;
 }
 
-.mode-block {
-/*    margin-block: 50px;*/
+.mode-block h2{
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .blue-button-large {
@@ -296,7 +306,7 @@ input[type="number"] {
     padding-inline: 30px;
     height: 100px;
     width: 180px;
-    margin: 5px;
+    margin: 12px;
 }
 
 /* ---------- Product detail page ---------- */

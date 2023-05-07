@@ -30,7 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         <a href="account.php" class="text-button" style="font-size: 18px;">My Account</a>
                         <a href="cart.php">
                             <img src="images/cart.png" alt="Shopping Cart" class="image-button" width="30">
-                        </a>';
+                        </a>
+			            <a href="post_item.php" id="header-sell-button" style="font-size: 18px;">SELL</a>'
+			    ;
                 } else { // If user is not logged in
                     echo '<a href="login.php" class="text-button" style="font-size: 18px; margin-top: 6px;">Log In</a>';
                 }

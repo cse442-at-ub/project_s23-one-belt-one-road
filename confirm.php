@@ -8,13 +8,13 @@
 	<header>
 		<?php require 'header.php'; ?>
 	</header>
-	<div style="text-align: center;">
+	<div id="confirm-page" style="text-align: center;">
 			<h1>Thank you for your order!</h1>
 			<h2>Shipping Address:</h2>
 			<?php
 				$shipping = $_SESSION["shipping"];
 				$amount = $_SESSION["amount"]; 
-				echo '<p><label style="white-space: nowrap;">' . $shipping . '</label></p>';
+				echo '<p style="white-space: nowrap;">' . $shipping . '</p>';
 				echo '<h3>Total Amount: $' . $amount . '</h3>';
 			?>
 	</div>

@@ -139,3 +139,7 @@ input {
     padding-inline: 15px;
     margin: 5px;
 }
+
+#confirm-page p{
+	color: #006ED3;
+}

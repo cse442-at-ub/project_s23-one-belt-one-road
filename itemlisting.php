@@ -15,7 +15,7 @@
             <option value="price-asc">Price (Low to High)</option>
             <option value="price-desc">Price (High to Low)</option>
         </select>
-        <button id="sort-btn">Sort</button>
+        <button id="sort-btn">SORT</button>
     </div>
 
 	<?php
@@ -40,8 +40,8 @@
 				$product_path = 'product_detail.php?productID=' . $attr['id'];
 				echo '<div class="item">';
 				echo '<a href="' . $product_path . '"><img src="' . $image_path . '" alt="item"></a>';
-				echo '<h3>' . $attr['product_name'] . '</h3>';
-				echo '<h3">$ ' . $attr['unit_price'] . '</h3>';
+				echo '<h3 class="item-name">' . $attr['product_name'] . '</h3>';
+				echo '<h3 class="item-price">$ ' . $attr['unit_price'] . '</h3>';
 				echo '</div>';
 			}
 			echo '</div>';
@@ -53,7 +53,7 @@
 				echo "Error: Executing the procedure fialed ";
 				exit;
 			}
-			$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/images/' : '/CSE442-542/2023-Spring/cse-442j/images/';
+			$image_location = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/' : '/CSE442-542/2023-Spring/cse-442j/';
 			echo '<h1 style="color: #006ED3;">All Items</h1>';
 			echo '<div class="item-container">';
 			while ($attr = $result->fetch_assoc()) {
@@ -61,8 +61,8 @@
 				$product_path = 'product_detail.php?productID=' . $attr['id'];
 				echo '<div class="item">';
 				echo '<a href="' . $product_path . '"><img src="' . $image_path . '" alt="item"></a>';
-				echo '<h3>' . $attr['product_name'] . '</h3>';
-				echo '<h3">$ ' . $attr['unit_price'] . '</h3>';
+				echo '<h3 class="item-name">' . $attr['product_name'] . '</h3>';
+				echo '<h3 class="item-price">$ ' . $attr['unit_price'] . '</h3>';
 				echo '</div>';
 			}
 			echo '</div>';
