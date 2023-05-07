@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['username'])) {
+	header('Location: login.php');
+  }
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : -1;
 ?>
 
